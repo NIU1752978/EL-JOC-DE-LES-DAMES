@@ -10,26 +10,32 @@ void Tauler::inicialitza(const string& nomFitxer)
 		char tipus;
 		string posicio;
 
-		while (fitxer >> posicio >> tipus)
+		while (fitxer >> tipus >> posicio)
 		{
 			Fitxa fitxa;
 
-			if (tipus == 'D')
-			{
-				fitxa = DAMA_BLANCA;
-			}
-			else if (tipus == 'R')
-			{
-				fitxa = DAMA_NEGRA;
-			}
-			else if (tipus == 'X')
-			{
-				fitxa = FITXA_NORMAL_NEGRA;
-			}
-			else if (tipus == 'O')
-			{
-				fitxa = FITXA_NORMAL_BLANCA;
-			}
+			switch (tipus)
+            {
+                case 'O':
+                    fitxa.setTipus(TIPUS_NORMAL);
+                    fitxa.setColor(COLOR_BLANC);
+                    break;
+                case 'X':
+                    fitxa.setTipus(TIPUS_NORMAL);
+                    fitxa.setColor(COLOR_NEGRE);
+                    break;
+                case 'D':
+                    fitxa.setTipus(TIPUS_DAMA);
+                    fitxa.setColor(COLOR_BLANC);
+                    break;
+                case 'R':
+                    fitxa.setTipus(TIPUS_DAMA);
+                    fitxa.setColor(COLOR_NEGRE);
+                    break;
+                default:
+                    fitxa.setTipus(TIPUS_EMPTY);
+                    break;
+            }
 
 			Posicio pos(posicio);
 			setFitxa(pos, fitxa);
@@ -44,7 +50,6 @@ void Tauler::actualitzaMovimentsValids()
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
-	return false;
 }
 
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
@@ -53,7 +58,6 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 string Tauler::toString() const
 {
-	return string();
 }
 
 void Tauler::inicialitzaTaulerVuit()
@@ -62,7 +66,6 @@ void Tauler::inicialitzaTaulerVuit()
 
 bool Tauler::posicioValida(const Posicio& posicio)
 {
-	return false;
 }
 
 void Tauler::carregaFitxes(const string& nomFitxer)

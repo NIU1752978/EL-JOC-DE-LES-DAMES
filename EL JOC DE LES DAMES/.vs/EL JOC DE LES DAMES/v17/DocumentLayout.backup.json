@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\tauler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|solutionrelative:tauler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|solutionrelative:Posicio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|solutionrelative:Tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{9F59AB23-0927-4AA5-A5EA-D102E6814379}|EL JOC DE LES DAMES.vcxproj|solutionrelative:Posicio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Posicio.h",
-              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.h",
-              "RelativeDocumentMoniker": "Posicio.h",
-              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.h",
-              "RelativeToolTip": "Posicio.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-10T18:26:38.423Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Tauler.cpp",
-              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp",
-              "RelativeDocumentMoniker": "Tauler.cpp",
-              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp",
-              "RelativeToolTip": "Tauler.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-10T18:28:21.901Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Tauler.h",
-              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.h",
-              "RelativeDocumentMoniker": "Tauler.h",
-              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.h",
-              "RelativeToolTip": "Tauler.h",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-14T15:26:49.409Z",
+              "Title": "Posicio.cpp",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.cpp",
+              "RelativeDocumentMoniker": "Posicio.cpp",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.cpp",
+              "RelativeToolTip": "Posicio.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-10T19:01:06.724Z",
               "EditorCaption": ""
             }
           ]
