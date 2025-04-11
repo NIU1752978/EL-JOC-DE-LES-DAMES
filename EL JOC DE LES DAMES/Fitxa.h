@@ -18,58 +18,29 @@ typedef enum {
 } ColorFitxa;
 
 class Fitxa {
-private:
-    TipusFitxa tipus;
-    ColorFitxa color;
-    Moviment movimentsValids[MAX_MOVIMENTS];
-    int nMoviments;
 
 public:
-    Fitxa() : tipus(TIPUS_EMPTY), color(COLOR_BLANC), nMoviments(0) {}
 
+    Fitxa() : tipus(TIPUS_EMPTY), color(COLOR_BLANC), nMoviments(0) {}
     Fitxa(TipusFitxa t, ColorFitxa c) : tipus(t), color(c), nMoviments(0) {}
 
-    TipusFitxa getTipus() const {
-        return tipus;
-    }
+    TipusFitxa getTipus() const { return tipus; }
+    ColorFitxa getColor() const { return color; }
+    int getNumMoviments() const { return nMoviments; }
+    Moviment getMoviment(int i) const { return movimentsValids[i]; }
+    bool esBuida() const { return tipus == TIPUS_EMPTY; }
 
-    ColorFitxa getColor() const {
-        return color;
-    }
+    void convertirEnDama();
+    void afegeixMovimentValid(const Moviment& m);
+    void netejaMoviments();
+    void mostraMoviments() const;
+    
+private:
+	TipusFitxa tipus;
+	ColorFitxa color;
+	Moviment movimentsValids[MAX_MOVIMENTS];
+	int nMoviments;
 
-    void convertirEnDama() {
-        if (tipus == TIPUS_NORMAL) {
-            tipus = TIPUS_DAMA;
-        }
-    }
-
-    void afegeixMovimentValid(const Moviment& m) {
-        if (nMoviments < MAX_MOVIMENTS) {
-            movimentsValids[nMoviments++] = m;
-        }
-    }
-
-    void netejaMoviments() {
-        nMoviments = 0;
-    }
-
-    int getNumMoviments() const {
-        return nMoviments;
-    }
-
-    Moviment getMoviment(int i) const {
-        return movimentsValids[i];
-    }
-
-    void mostraMoviments() const {
-        for (int i = 0; i < nMoviments; ++i) {
-            movimentsValids[i].mostra();
-        }
-    }
-
-    bool esBuida() const {
-        return tipus == TIPUS_EMPTY;
-    }
 };
 
 #endif
