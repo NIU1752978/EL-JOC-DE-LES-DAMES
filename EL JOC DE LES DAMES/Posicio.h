@@ -9,7 +9,7 @@ public:
 	Posicio() : m_fila(0), m_columna(0), m_posicio("") {}
 	Posicio(const string& posicio) : m_fila(0), m_columna(0), m_posicio(posicio) {}
 
-	string posicioAString();
+	string toString();
 
 	string getPosicio() const { return m_posicio; }
 	int getFila() const { return m_fila; }

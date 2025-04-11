@@ -1,6 +1,10 @@
 #include "Tauler.h"
 #include <fstream>
 
+void Tauler::setFitxa(const Posicio& posicio, const Fitxa& fitxa)
+{
+}
+
 void Tauler::inicialitza(const string& nomFitxer)
 {
 	ifstream fitxer(nomFitxer);

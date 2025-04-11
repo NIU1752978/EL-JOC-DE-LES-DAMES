@@ -18,6 +18,7 @@ public:
 	bool mouFitxa(const Posicio& origen, const Posicio& desti);
 	string toString() const;
 	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[]);
+	void setFitxa(const Posicio& posicio, const Fitxa& fitxa);
 
 private:
 	Fitxa m_tauler[N_FILES][N_COLUMNES];

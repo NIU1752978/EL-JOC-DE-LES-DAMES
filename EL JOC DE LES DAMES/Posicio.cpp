@@ -1,6 +1,6 @@
 #include "Posicio.h"
 
-string Posicio::posicioAString()
+string Posicio::toString()
 {
 }
 
