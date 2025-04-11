@@ -26,6 +26,8 @@ public:
 
     TipusFitxa getTipus() const { return tipus; }
     ColorFitxa getColor() const { return color; }
+	void setTipus(TipusFitxa t) { tipus = t; }
+	void setColor(ColorFitxa c) { color = c; }
     int getNumMoviments() const { return nMoviments; }
     Moviment getMoviment(int i) const { return movimentsValids[i]; }
     bool esBuida() const { return tipus == TIPUS_EMPTY; }
@@ -70,6 +72,11 @@ public:
         }
     }
 
+private:
+	TipusFitxa tipus;
+	ColorFitxa color;
+	Moviment movimentsValids[MAX_MOVIMENTS];
+	int nMoviments;
 };
 
 #endif
