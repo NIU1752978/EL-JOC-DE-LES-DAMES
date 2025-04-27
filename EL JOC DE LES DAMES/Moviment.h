@@ -19,7 +19,7 @@ public:
 
     void afegeixPosicio(const Posicio& p);
     Posicio getUltimaPosicio() const;
-    void mostra() const {}
+    void mostra() const;
 
     private:
         Posicio cami[MAX_POSICIONS];

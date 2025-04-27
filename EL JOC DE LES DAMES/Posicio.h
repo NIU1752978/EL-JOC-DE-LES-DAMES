@@ -1,3 +1,6 @@
+#ifndef POSICIO_H
+#define POSICIO_H
+
 #include <iostream>
 #include <string>
 
@@ -6,10 +9,12 @@ using namespace std;
 class Posicio
 {
 public:
-	Posicio() : m_fila(0), m_columna(0), m_posicio("") {}
-	Posicio(const string& posicio) : m_fila(0), m_columna(0), m_posicio(posicio) {}
+	Posicio() : m_fila(-1), m_columna(-1), m_posicio("") {}
+	Posicio(int fila, int columna) : m_fila(fila), m_columna(columna){}
+	Posicio(const string& posicio) : m_fila(-1), m_columna(-1), m_posicio(posicio) {}
 
 	string toString();
+	bool posicioValida() const;
 
 	string getPosicio() const { return m_posicio; }
 	int getFila() const { return m_fila; }
@@ -25,4 +30,6 @@ private:
 	int m_fila;
 	int m_columna;
 };
+#endif
 
+//entrada i sortida, metode que  controli si esta dins del tauler
