@@ -30,6 +30,8 @@ private:
 	int m_fila;
 	int m_columna;
 };
+ostream& operator<<(ostream& out, const Posicio& pos);
+
 #endif
 
 //entrada i sortida, metode que  controli si esta dins del tauler

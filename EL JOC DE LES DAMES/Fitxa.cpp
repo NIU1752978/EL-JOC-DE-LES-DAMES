@@ -2,12 +2,14 @@
 
 void Fitxa::convertirEnDama() 
 {
-    if (tipus == TIPUS_NORMAL) {
+    if (tipus == TIPUS_NORMAL) 
+    {
         tipus = TIPUS_DAMA;
     }
 }
 
-void Fitxa::afegeixMovimentValid(const Moviment& m) {
+void Fitxa::afegeixMovimentValid(const Moviment& m) 
+{
     if (nMoviments < MAX_MOVIMENTS) 
     {
         movimentsValids[nMoviments++] = m;

@@ -46,32 +46,7 @@ void Tauler::inicialitza(const string& nomFitxer)
 
 void Tauler::actualitzaMovimentsValids()
 {
-    Moviment movimentsValids[100];
-    Moviment movimentsPendents[100];
-	Moviment movimentActual;
-	int nMovimentsPendents = 0;
 
-	movimentsPendents[nMovimentsPendents++] = movimentActual;
-	Posicio posicioActual = movimentActual.getUltimaPosicio();
-
-    do
-    {
-        movimentActual = movimentsPendents[0];
-		nMovimentsPendents--;
-		posValides = PosicionsValides(posicioActual);
-
-        while (posValides != 0)
-        {
-			Posicio posicioValid = posValides[0];
-			movimentsValids[nMovimentsPendents++] = movimentActual;
-			movimentsPendents[nMovimentsPendents++] = movimentActual;
-			posicioActual = posicioValid;
-
-            movimentPendents = duplicaMoviment(movimentActual);
-
-        }
-
-	} while (movimentsPendents != 0);
 }
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)

@@ -14,3 +14,8 @@ bool Posicio::operator==(const Posicio& posicio) const
 {
 	return false;
 }
+
+ostream& operator<<(ostream& out, const Posicio& pos)
+{
+	return out;
+}
