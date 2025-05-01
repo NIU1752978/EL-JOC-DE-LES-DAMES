@@ -19,6 +19,8 @@ public:
 	string toString() const;
 	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[]);
 	void establirFitxa(const Posicio& posicio, const Fitxa& fitxa);
+	void obtenirPosicionsValides(const Posicio& origen, Posicio posicionsValides[], int& nPosicionsValides);
+	bool esCaptura(const Posicio& origen, const Posicio& desti);
 
 private:
 	Fitxa m_tauler[N_FILES][N_COLUMNES];

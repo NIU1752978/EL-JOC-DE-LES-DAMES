@@ -26,7 +26,7 @@ void Moviment::mostra() const
         cout << cami[i].getPosicio();
         if (i != nPosicions - 1)
         {
-            cout << " -> ";
+            cout << " - ";
         };
     }
     cout << endl;

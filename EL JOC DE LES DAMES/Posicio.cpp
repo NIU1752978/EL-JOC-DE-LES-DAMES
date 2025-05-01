@@ -1,10 +1,5 @@
 #include "Posicio.h"
 
-string Posicio::toString()
-{
-	return "";
-}
-
 bool Posicio::posicioValida() const
 {
 	return false;
@@ -12,7 +7,14 @@ bool Posicio::posicioValida() const
 
 bool Posicio::operator==(const Posicio& posicio) const
 {
-	return false;
+	bool igual = false;
+
+	if (m_fila == posicio.m_fila && m_columna == posicio.m_columna)
+	{
+		igual = true;
+	}
+
+	return igual;
 }
 
 ostream& operator<<(ostream& out, const Posicio& pos)
