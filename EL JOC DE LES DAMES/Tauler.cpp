@@ -69,7 +69,7 @@ void Tauler::actualitzaMovimentsValids()
                 Posicio posicionsPossibles[MAX_POSICIONS];
 				getPosicionsPossibles(origen, nPosicions, posicionsPossibles);
 
-                for (int k = 0; k < nPosicions; k++)
+                for (int k = 0; k < nPosicions; k++) //posicions possibles
                 {
 					Moviment moviment;
                     moviment.afegeixPosicio(origen);
@@ -314,8 +314,74 @@ void Tauler::carregaFitxes(const string& nomFitxer)
 	fitxer.close();
 }
 
-void Tauler::obtenirPosicionsValides(const Posicio& origen, Posicio posicionsValides[], int& nPosicionsValides)
+void Tauler::obtenirPosicionsValides(const Posicio& origen, Posicio posicionsValides[], int& nPosicionsValides) 
 {
+	nPosicionsValides = 0;
+
+	int fila = origen.getFila(); //coordenades
+	int columna = origen.getColumna();
+
+	Fitxa& fitxa = m_tauler[fila][columna];
+
+    if (fitxa.getTipus() == TIPUS_DAMA)
+    {
+		bool esDama = true;
+
+        if (fitxa.getColor() == COLOR_BLANC)
+        {
+			bool esBlanca = true;
+
+            if (!esDama)
+            {
+                if (esBlanca)
+                {
+					if (fila + 1 < N_FILES && columna + 1 < N_COLUMNES && m_tauler[fila + 1][columna + 1].esBuida()) //diagonal dreta blanca
+					{
+                        posicionsValides[nPosicionsValides++] = Posicio(fila + 1, columna + 1);
+					}
+
+                    if (fila + 1 < N_FILES && columna - 1 >= 0 && m_tauler[fila + 1][columna - 1].esBuida()) //diagonal esquerra blanca
+                    {
+                        posicionsValides[nPosicionsValides++] = Posicio(fila + 1, columna - 1);
+                    }
+                }
+                else
+                {
+					if (fila - 1 >= 0 && columna + 1 < N_COLUMNES && m_tauler[fila - 1][columna + 1].esBuida()) //diagonal dreta negra
+                    {
+						posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna + 1);
+                    }
+
+					if (fila - 1 >= 0 && columna - 1 >= 0 && m_tauler[fila - 1][columna - 1].esBuida()) //diagonal esquerra negra
+                    {
+						posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna - 1);
+                    }
+                }
+            }
+            else
+            {
+                if (fila + 1 < N_FILES && columna + 1 < N_COLUMNES && m_tauler[fila + 1][columna + 1].esBuida()) //diagonal dreta dama endavant
+                {
+                    posicionsValides[nPosicionsValides++] = Posicio(fila + 1, columna + 1);
+                }
+
+                if (fila + 1 < N_FILES && columna - 1 >= 0 && m_tauler[fila + 1][columna - 1].esBuida()) //diagonal esquerra dama endavant
+                {
+                    posicionsValides[nPosicionsValides++] = Posicio(fila + 1, columna - 1);
+                }
+
+				if (fila - 1 >= 0 && columna + 1 < N_COLUMNES && m_tauler[fila - 1][columna + 1].esBuida()) //diagonal dreta dama endarere
+                {
+                    posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna + 1);
+                }
+
+                if (fila - 1 >= 0 && columna - 1 >= 0 && m_tauler[fila - 1][columna - 1].esBuida()) //diagonal esquerra dama endarere
+                {
+                    posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna - 1);
+                }
+            }
+        }
+    }
 }
 
 bool Tauler::esCaptura(const Posicio& origen, const Posicio& desti)
