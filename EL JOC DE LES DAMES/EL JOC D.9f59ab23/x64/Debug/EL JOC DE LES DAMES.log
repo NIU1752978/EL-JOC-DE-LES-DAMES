@@ -1,6 +1,2 @@
 ﻿  Tauler.cpp
-  test.cpp
-C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\test.cpp(96,24): warning C4267: 'inicializando': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\test.cpp(447,22): warning C4305: '+=': truncamiento de 'double' a 'float'
-  Generando código...
   EL JOC DE LES DAMES.vcxproj -> C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\x64\Debug\EL JOC DE LES DAMES.exe

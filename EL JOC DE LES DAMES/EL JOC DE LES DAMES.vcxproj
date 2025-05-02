@@ -132,6 +132,7 @@
     <ClInclude Include="Moviment.h" />
     <ClInclude Include="Posicio.h" />
     <ClInclude Include="Tauler.h" />
+    <ClInclude Include="tauler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Fitxa.cpp" />

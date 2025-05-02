@@ -1,4 +1,4 @@
-﻿#include "Tauler.h"
+﻿#include "tauler.hpp"
 #include <fstream>
 
 void Tauler::inicialitza(const string& nomFitxer)
