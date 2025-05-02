@@ -122,9 +122,38 @@ void Tauler::actualitzaMovimentsValids()
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
-	bool movimentValid = false;
-    return movimentValid; 
+    bool movimentValid = false;
+
+    if (!origen.posicioValida() || !desti.posicioValida())
+        return false;
+
+    Fitxa& fitxaOrigen = m_tauler[origen.getFila()][origen.getColumna()];
+    Fitxa& fitxaDesti = m_tauler[desti.getFila()][desti.getColumna()];
+
+    int nMoviments = fitxaOrigen.getNumMoviments();
+    for (int i = 0; i < nMoviments; i++)
+    {
+        Moviment mov = fitxaOrigen.getMoviment(i);
+        if (mov.getUltimaPosicio() == desti)
+        {
+            establirFitxa(desti, fitxaOrigen);
+            establirFitxa(origen, Fitxa()); 
+
+            if (esCaptura(origen, desti))
+            {
+                int filaDelMig = (origen.getFila() + desti.getFila()) / 2;
+                int columnaDelMig = (origen.getColumna() + desti.getColumna()) / 2;
+                establirFitxa(Posicio(filaDelMig, columnaDelMig), Fitxa());
+            }
+
+            movimentValid = true;
+            break;
+        }
+    }
+
+    return movimentValid;
 }
+
 
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
 {
@@ -174,7 +203,12 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 void Tauler::establirFitxa(const Posicio& posicio, const Fitxa& fitxa)
 {
+    if (posicio.posicioValida())
+    {
+        m_tauler[posicio.getFila()][posicio.getColumna()] = fitxa;
+    }
 }
+
 
 string Tauler::toString() const
 {
@@ -263,6 +297,13 @@ string Tauler::toString() const
 
 void Tauler::inicialitzaTaulerVuit()
 {
+    for (int fila = 0; fila < N_FILES; fila++)
+    {
+        for (int columna = 0; columna < N_COLUMNES; columna++)
+        {
+            m_tauler[fila][columna] = Fitxa(); 
+        }
+    }
 }
 
 void Tauler::carregaFitxes(const string& nomFitxer)

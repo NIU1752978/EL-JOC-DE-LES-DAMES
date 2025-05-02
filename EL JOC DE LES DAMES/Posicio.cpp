@@ -2,8 +2,9 @@
 
 bool Posicio::posicioValida() const
 {
-	return false;
+	return (m_fila >= 0 && m_fila < 8 && m_columna >= 0 && m_columna < 8);
 }
+
 
 bool Posicio::operator==(const Posicio& posicio) const
 {
@@ -19,5 +20,19 @@ bool Posicio::operator==(const Posicio& posicio) const
 
 ostream& operator<<(ostream& out, const Posicio& pos)
 {
-	return out;
+    ostream& operator<<(ostream & out, const Posicio & pos)
+    {
+        if (pos.posicioValida())
+        {
+            char lletraColumna = 'a' + pos.getColumna();
+            int numeroFila = 8 - pos.getFila();
+            out << lletraColumna << numeroFila;
+        }
+        else
+        {
+            out << "Posicio no valida";
+        }
+        return out;
+    }
+
 }
