@@ -22,7 +22,6 @@ bool Posicio::posicioValida() const
 	return (m_fila >= 0 && m_fila < 8 && m_columna >= 0 && m_columna < 8);
 }
 
-
 bool Posicio::operator==(const Posicio& posicio) const
 {
 	bool igual = false;
