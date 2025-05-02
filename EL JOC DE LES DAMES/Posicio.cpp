@@ -20,19 +20,15 @@ bool Posicio::operator==(const Posicio& posicio) const
 
 ostream& operator<<(ostream& out, const Posicio& pos)
 {
-    ostream& operator<<(ostream & out, const Posicio & pos)
+    if (pos.posicioValida())
     {
-        if (pos.posicioValida())
-        {
-            char lletraColumna = 'a' + pos.getColumna();
-            int numeroFila = 8 - pos.getFila();
-            out << lletraColumna << numeroFila;
-        }
-        else
-        {
-            out << "Posicio no valida";
-        }
-        return out;
+        char lletraColumna = 'a' + pos.getColumna();
+        int numeroFila = 8 - pos.getFila();
+        out << lletraColumna << numeroFila;
     }
-
+    else
+    {
+        out << "Posicio no valida";
+    }
+    return out;
 }

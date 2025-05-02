@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EL JOC DE LES DAMES\\Posicio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EL JOC DE LES DAMES\\Posicio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Fitxa.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EL JOC DE LES DAMES\\Fitxa.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EL JOC DE LES DAMES\\Tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EL JOC DE LES DAMES\\Tauler.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EL JOC DE LES DAMES\\Posicio.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +30,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Fitxa.h",
+              "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Fitxa.h",
+              "RelativeDocumentMoniker": "EL JOC DE LES DAMES\\Fitxa.h",
+              "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Fitxa.h",
+              "RelativeToolTip": "EL JOC DE LES DAMES\\Fitxa.h",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-02T00:18:06.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Tauler.cpp",
               "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp",
               "RelativeDocumentMoniker": "EL JOC DE LES DAMES\\Tauler.cpp",
               "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp",
               "RelativeToolTip": "EL JOC DE LES DAMES\\Tauler.cpp",
-              "ViewState": "AgIAALEAAAAAAAAAAAAswNIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAAAE4BAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-01T23:56:12.153Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Tauler.h",
               "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.h",
               "RelativeDocumentMoniker": "EL JOC DE LES DAMES\\Tauler.h",
@@ -62,14 +79,14 @@
               "RelativeDocumentMoniker": "EL JOC DE LES DAMES\\Posicio.cpp",
               "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.cpp",
               "RelativeToolTip": "EL JOC DE LES DAMES\\Posicio.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-01T23:56:10.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Posicio.h",
               "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Posicio.h",
               "RelativeDocumentMoniker": "EL JOC DE LES DAMES\\Posicio.h",
