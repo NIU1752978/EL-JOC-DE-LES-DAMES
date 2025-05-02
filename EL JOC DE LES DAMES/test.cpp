@@ -1,4 +1,4 @@
-#include "Tauler.h"
+#include "C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\Tauler.h"
 #include "json.hpp"
 #include <string>
 #include <iostream>

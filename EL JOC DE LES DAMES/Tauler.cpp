@@ -212,88 +212,41 @@ void Tauler::establirFitxa(const Posicio& posicio, const Fitxa& fitxa)
 
 string Tauler::toString() const
 {
-	string resultat = "";
+    string resultat = "";
 
     for (int fila = 0; fila < N_FILES; fila++)
     {
-		for (int columna = 0; columna < N_COLUMNES; columna++)
-		{
-			Fitxa fitxa = m_tauler[fila][columna];
+        resultat += to_string(N_FILES - fila) + ": ";
+        for (int columna = 0; columna < N_COLUMNES; columna++)
+        {
+            Fitxa fitxa = m_tauler[fila][columna];
 
             if (!fitxa.esBuida())
             {
                 char tipus;
 
                 if (fitxa.getTipus() == TIPUS_DAMA)
-                {
-                    if (fitxa.getColor() == COLOR_BLANC)
-                    {
-                        tipus = 'D';
-                    }
-                    else
-                    {
-                        tipus = 'R';
-                    }
-                }
+                    tipus = (fitxa.getColor() == COLOR_BLANC) ? 'D' : 'R';
                 else
-                {
-                    if (fitxa.getColor() == COLOR_BLANC)
-                    {
-                        tipus = 'O';
-                    }
-                    else
-                    {
-                        tipus = 'X';
-                    }
-                }
-                
-                char columna = 'zzzz';
+                    tipus = (fitxa.getColor() == COLOR_BLANC) ? 'O' : 'X';
 
-                if (columna == 0)
-                {
-                    columna = 'a';
-                }
-                else if (columna == 1)
-                {
-                    columna = 'b';
-                }
-                else if (columna == 2)
-                {
-                    columna = 'c';
-                }
-                else if (columna == 3)
-                {
-                    columna = 'd';
-                }
-				else if (columna == 4)
-				{
-					columna = 'e';
-				}
-				else if (columna == 5)
-				{
-					columna = 'f';
-				}
-				else if (columna == 6)
-				{
-					columna = 'g';
-				}
-                else if (columna == 7)
-                {
-                    columna = 'h';
-                }
-
-				int numeroFila = N_FILES - fila;
-
-                resultat = resultat + tipus;
-                resultat = resultat + " ";
-                resultat = resultat + columna;
-				resultat += '0' + numeroFila;
-				resultat = resultat + "\n";
+                resultat += tipus;
             }
-		}
+            else
+            {
+                resultat += '_';
+            }
+
+            resultat += ' ';
+        }
+        resultat += '\n';
     }
+
+    resultat += "   a b c d e f g h\n";
+
     return resultat;
 }
+
 
 void Tauler::inicialitzaTaulerVuit()
 {
