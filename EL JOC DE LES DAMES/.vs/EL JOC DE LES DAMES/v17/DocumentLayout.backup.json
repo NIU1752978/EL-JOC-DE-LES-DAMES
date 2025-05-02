@@ -58,8 +58,7 @@
               "RelativeToolTip": "Moviment.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-01T23:50:37.635Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T23:50:37.635Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "Posicio.h",
               "ViewState": "AgIAAA4AAAAAAAAAAAAYwCIAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-01T23:49:40.358Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T23:49:40.358Z"
             },
             {
               "$type": "Document",
@@ -84,8 +82,7 @@
               "RelativeToolTip": "Tauler.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-01T23:49:51.448Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T23:49:51.448Z"
             },
             {
               "$type": "Document",
@@ -97,8 +94,7 @@
               "RelativeToolTip": "Fitxa.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-01T23:50:02.453Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T23:50:02.453Z"
             },
             {
               "$type": "Document",
@@ -106,9 +102,9 @@
               "Title": "Tauler.cpp",
               "DocumentMoniker": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp",
               "RelativeDocumentMoniker": "Tauler.cpp",
-              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp*",
-              "RelativeToolTip": "Tauler.cpp*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAM4AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORM\u00C0TICA\\MP\\EL-JOC-DE-LES-DAMES\\EL JOC DE LES DAMES\\Tauler.cpp",
+              "RelativeToolTip": "Tauler.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-02T09:38:05.793Z",
               "EditorCaption": ""
