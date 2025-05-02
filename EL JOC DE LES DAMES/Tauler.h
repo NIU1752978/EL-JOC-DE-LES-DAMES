@@ -26,6 +26,5 @@ private:
 	Fitxa m_tauler[N_FILES][N_COLUMNES];
 
 	void inicialitzaTaulerVuit();
-	void carregaFitxes(const string& nomFitxer);
 };
 

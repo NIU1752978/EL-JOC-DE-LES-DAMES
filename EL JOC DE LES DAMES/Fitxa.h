@@ -28,7 +28,7 @@ public:
    void afegeixMovimentValid(const Moviment& m);  
    void netejaMoviments();  
    void mostraMoviments() const;  
-   bool esBuida() const { return tipus == TIPUS_EMPTY; }  
+   bool esBuida() const { return tipus == TIPUS_EMPTY; }
 
    TipusFitxa getTipus() const { return tipus; }  
    void setTipus(TipusFitxa t) { tipus = t; } 

@@ -1,4 +1,2 @@
 ﻿  Tauler.cpp
-C:\Users\usuari\Documents\ENGINYERIA INFORMÀTICA\MP\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\Tauler.cpp(216,30): warning C4305: 'inicializando': truncamiento de 'int' a 'char'
-C:\Users\usuari\Documents\ENGINYERIA INFORMÀTICA\MP\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\Tauler.cpp(216,32): warning C4309: 'inicializando': truncamiento de valor constante
   EL JOC DE LES DAMES.vcxproj -> C:\Users\usuari\Documents\ENGINYERIA INFORMÀTICA\MP\EL-JOC-DE-LES-DAMES\EL JOC DE LES DAMES\x64\Debug\EL JOC DE LES DAMES.exe
