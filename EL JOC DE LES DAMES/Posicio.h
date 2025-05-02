@@ -11,7 +11,7 @@ class Posicio
 public:  
    Posicio() : m_fila(-1), m_columna(-1), m_posicio("") {}  
    Posicio(int fila, int columna) : m_fila(fila), m_columna(columna), m_posicio("") {}  
-   Posicio(const string& posicio) : m_fila(-1), m_columna(-1), m_posicio(posicio) {}  
+   Posicio(const string& posicio);
 
    bool posicioValida() const;  
 

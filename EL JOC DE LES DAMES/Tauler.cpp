@@ -1,7 +1,7 @@
-#include "Tauler.h"
+﻿#include "Tauler.h"
 #include <fstream>
 
-void Tauler::inicialitza(const string& nomFitxer)
+void Tauler::inicialitza(const string & nomFitxer)
 {
     ifstream fitxer(nomFitxer);
 
@@ -50,28 +50,28 @@ void Tauler::actualitzaMovimentsValids()
     {
         for (int j = 0; j < N_COLUMNES; j++)
         {
-			m_tauler[i][j].netejaMoviments();
+            m_tauler[i][j].netejaMoviments();
         }
     }
 
     bool hiHaCaptures = false;
-	
+
     for (int i = 0; i < N_FILES; i++)
     {
         for (int j = 0; j < N_COLUMNES; j++)
         {
-			Fitxa& fitxa = m_tauler[i][j];
+            Fitxa& fitxa = m_tauler[i][j];
 
             if (!fitxa.esBuida()) //si la fitxa no es buida obtenim les posicions posibles
             {
-				Posicio origen(i, j);
+                Posicio origen(i, j);
                 int nPosicions = 0;
                 Posicio posicionsPossibles[MAX_POSICIONS];
-				getPosicionsPossibles(origen, nPosicions, posicionsPossibles);
+                getPosicionsPossibles(origen, nPosicions, posicionsPossibles);
 
                 for (int k = 0; k < nPosicions; k++) //posicions possibles
                 {
-					Moviment moviment;
+                    Moviment moviment;
                     moviment.afegeixPosicio(origen);
                     moviment.afegeixPosicio(posicionsPossibles[k]);
 
@@ -81,7 +81,7 @@ void Tauler::actualitzaMovimentsValids()
                     if (diferenciaFila == 2 || diferenciaFila == -2 && diferenciaColumna == 2 || diferenciaColumna == -2) // si diferencia = 2 absolut
                     {
                         moviment.setPecesMates(1);
-						hiHaCaptures = true;
+                        hiHaCaptures = true;
                     }
 
                     fitxa.afegeixMovimentValid(moviment);
@@ -92,14 +92,14 @@ void Tauler::actualitzaMovimentsValids()
 
     if (hiHaCaptures == true) //quan hi hagi captures eliminarem els movimnets que no impliquin captura
     {
-		for (int i = 0; i < N_FILES; i++)
-		{
-			for (int j = 0; j < N_COLUMNES; j++)
-			{
-				Fitxa& fitxa = m_tauler[i][j];
-				int nMoviments = fitxa.getNumMoviments();
-				Moviment nousMoviments[MAX_MOVIMENTS];
-				int comptador = 0;
+        for (int i = 0; i < N_FILES; i++)
+        {
+            for (int j = 0; j < N_COLUMNES; j++)
+            {
+                Fitxa& fitxa = m_tauler[i][j];
+                int nMoviments = fitxa.getNumMoviments();
+                Moviment nousMoviments[MAX_MOVIMENTS];
+                int comptador = 0;
 
                 for (int k = 0; k < nMoviments; k++)
                 {
@@ -109,14 +109,14 @@ void Tauler::actualitzaMovimentsValids()
                     }
                 }
 
-				fitxa.netejaMoviments();
+                fitxa.netejaMoviments();
 
-				for (int k = 0; k < comptador; k++)
-				{
-					fitxa.afegeixMovimentValid(nousMoviments[k]);
-				}
-			}
-		}
+                for (int k = 0; k < comptador; k++)
+                {
+                    fitxa.afegeixMovimentValid(nousMoviments[k]);
+                }
+            }
+        }
     }
 }
 
@@ -137,7 +137,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
         if (mov.getUltimaPosicio() == desti)
         {
             establirFitxa(desti, fitxaOrigen);
-            establirFitxa(origen, Fitxa()); 
+            establirFitxa(origen, Fitxa());
 
             if (esCaptura(origen, desti))
             {
@@ -159,7 +159,7 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 {
     nPosicions = 0;
     Moviment movimentsPendents[MAX_MOVIMENTS];
-	int numMovimentsPendents = 0;
+    int numMovimentsPendents = 0;
 
     Moviment movimentInicial;
     movimentInicial.afegeixPosicio(origen);
@@ -180,12 +180,12 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
         Posicio posicionsValides[MAX_POSICIONS];
         int nPosicionsValides = 0;
-		obtenirPosicionsValides(posicioActual, posicionsValides, nPosicionsValides);
+        obtenirPosicionsValides(posicioActual, posicionsValides, nPosicionsValides);
 
-		for (int j = 0; j < nPosicionsValides; j++)
-		{
-			Posicio novaPosicio = posicionsValides[j];
-			Moviment nouMoviment = movimentActual;
+        for (int j = 0; j < nPosicionsValides; j++)
+        {
+            Posicio novaPosicio = posicionsValides[j];
+            Moviment nouMoviment = movimentActual;
 
             nouMoviment.afegeixPosicio(novaPosicio);
 
@@ -197,7 +197,7 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
             {
                 posicionsPossibles[nPosicions++] = novaPosicio;
             }
-		}
+        }
     }
 }
 
@@ -216,7 +216,6 @@ string Tauler::toString() const
 
     for (int fila = 0; fila < N_FILES; fila++)
     {
-        resultat += to_string(N_FILES - fila) + ": ";
         for (int columna = 0; columna < N_COLUMNES; columna++)
         {
             Fitxa fitxa = m_tauler[fila][columna];
@@ -226,27 +225,75 @@ string Tauler::toString() const
                 char tipus;
 
                 if (fitxa.getTipus() == TIPUS_DAMA)
-                    tipus = (fitxa.getColor() == COLOR_BLANC) ? 'D' : 'R';
+                {
+                    if (fitxa.getColor() == COLOR_BLANC)
+                    {
+                        tipus = 'D';
+                    }
+                    else
+                    {
+                        tipus = 'R';
+                    }
+                }
                 else
-                    tipus = (fitxa.getColor() == COLOR_BLANC) ? 'O' : 'X';
+                {
+                    if (fitxa.getColor() == COLOR_BLANC)
+                    {
+                        tipus = 'O';
+                    }
+                    else
+                    {
+                        tipus = 'X';
+                    }
+                }
 
-                resultat += tipus;
-            }
-            else
-            {
-                resultat += '_';
-            }
+                char columna = 'zzzz';
 
-            resultat += ' ';
+                if (columna == 0)
+                {
+                    columna = 'a';
+                }
+                else if (columna == 1)
+                {
+                    columna = 'b';
+                }
+                else if (columna == 2)
+                {
+                    columna = 'c';
+                }
+                else if (columna == 3)
+                {
+                    columna = 'd';
+                }
+                else if (columna == 4)
+                {
+                    columna = 'e';
+                }
+                else if (columna == 5)
+                {
+                    columna = 'f';
+                }
+                else if (columna == 6)
+                {
+                    columna = 'g';
+                }
+                else if (columna == 7)
+                {
+                    columna = 'h';
+                }
+
+                int numeroFila = N_FILES - fila;
+
+                resultat = resultat + tipus;
+                resultat = resultat + " ";
+                resultat = resultat + columna;
+                resultat += '0' + numeroFila;
+                resultat = resultat + "\n";
+            }
         }
-        resultat += '\n';
     }
-
-    resultat += "   a b c d e f g h\n";
-
     return resultat;
 }
-
 
 void Tauler::inicialitzaTaulerVuit()
 {
@@ -254,7 +301,7 @@ void Tauler::inicialitzaTaulerVuit()
     {
         for (int columna = 0; columna < N_COLUMNES; columna++)
         {
-            m_tauler[fila][columna] = Fitxa(); 
+            m_tauler[fila][columna] = Fitxa();
         }
     }
 }
@@ -266,7 +313,7 @@ void Tauler::carregaFitxes(const string& nomFitxer)
     if (fitxer.is_open())
     {
         string tipus;
-		string posicio;
+        string posicio;
 
         inicialitzaTaulerVuit();
 
@@ -274,65 +321,65 @@ void Tauler::carregaFitxes(const string& nomFitxer)
         {
             Fitxa novaFitxa;
 
-			if (tipus == "O")
-			{
-				novaFitxa.setTipus(TIPUS_NORMAL);
-				novaFitxa.setColor(COLOR_BLANC);
-			}
-			else if (tipus == "X")
-			{
-				novaFitxa.setTipus(TIPUS_NORMAL);
-				novaFitxa.setColor(COLOR_NEGRE);
-			}
-			else if (tipus == "D")
-			{
-				novaFitxa.setTipus(TIPUS_DAMA);
-				novaFitxa.setColor(COLOR_BLANC);
-			}
-			else if (tipus == "R")
-			{
-				novaFitxa.setTipus(TIPUS_DAMA);
-				novaFitxa.setColor(COLOR_NEGRE);
-			}
+            if (tipus == "O")
+            {
+                novaFitxa.setTipus(TIPUS_NORMAL);
+                novaFitxa.setColor(COLOR_BLANC);
+            }
+            else if (tipus == "X")
+            {
+                novaFitxa.setTipus(TIPUS_NORMAL);
+                novaFitxa.setColor(COLOR_NEGRE);
+            }
+            else if (tipus == "D")
+            {
+                novaFitxa.setTipus(TIPUS_DAMA);
+                novaFitxa.setColor(COLOR_BLANC);
+            }
+            else if (tipus == "R")
+            {
+                novaFitxa.setTipus(TIPUS_DAMA);
+                novaFitxa.setColor(COLOR_NEGRE);
+            }
 
             char lletraColumna = posicio[0];
             int numeroFila = posicio[1] - '0';
 
             int fila = N_FILES - numeroFila;
-			int columna = lletraColumna - 'a';
+            int columna = lletraColumna - 'a';
 
-			m_tauler[fila][columna] = novaFitxa;
+            m_tauler[fila][columna] = novaFitxa;
         }
     }
 
-	fitxer.close();
+    fitxer.close();
 }
 
-void Tauler::obtenirPosicionsValides(const Posicio& origen, Posicio posicionsValides[], int& nPosicionsValides) 
+void Tauler::obtenirPosicionsValides(const Posicio& origen, Posicio posicionsValides[], int& nPosicionsValides)
 {
-	nPosicionsValides = 0;
+    nPosicionsValides = 0;
 
-	int fila = origen.getFila(); //coordenades
-	int columna = origen.getColumna();
+    int fila = origen.getFila(); //coordenades
+    int columna = origen.getColumna();
 
-	Fitxa& fitxa = m_tauler[fila][columna];
+    Fitxa& fitxa = m_tauler[fila][columna];
 
     if (fitxa.getTipus() == TIPUS_DAMA)
     {
-		bool esDama = true;
+        bool esDama = true;
 
         if (fitxa.getColor() == COLOR_BLANC)
         {
-			bool esBlanca = true;
+            bool esBlanca = true;
 
             if (!esDama)
             {
                 if (esBlanca)
                 {
-					if (fila + 1 < N_FILES && columna + 1 < N_COLUMNES && m_tauler[fila + 1][columna + 1].esBuida()) //diagonal dreta blanca
-					{
+                    if (fila + 1 < N_FILES && columna + 1 < N_COLUMNES && m_tauler[fila + 1][columna + 1].esBuida()) //diagonal dreta blanca
+                    {
                         posicionsValides[nPosicionsValides++] = Posicio(fila + 1, columna + 1);
-					}
+                    }
 
                     if (fila + 1 < N_FILES && columna - 1 >= 0 && m_tauler[fila + 1][columna - 1].esBuida()) //diagonal esquerra blanca
                     {
@@ -341,14 +388,14 @@ void Tauler::obtenirPosicionsValides(const Posicio& origen, Posicio posicionsVal
                 }
                 else
                 {
-					if (fila - 1 >= 0 && columna + 1 < N_COLUMNES && m_tauler[fila - 1][columna + 1].esBuida()) //diagonal dreta negra
+                    if (fila - 1 >= 0 && columna + 1 < N_COLUMNES && m_tauler[fila - 1][columna + 1].esBuida()) //diagonal dreta negra
                     {
-						posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna + 1);
+                        posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna + 1);
                     }
 
-					if (fila - 1 >= 0 && columna - 1 >= 0 && m_tauler[fila - 1][columna - 1].esBuida()) //diagonal esquerra negra
+                    if (fila - 1 >= 0 && columna - 1 >= 0 && m_tauler[fila - 1][columna - 1].esBuida()) //diagonal esquerra negra
                     {
-						posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna - 1);
+                        posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna - 1);
                     }
                 }
             }
@@ -364,7 +411,7 @@ void Tauler::obtenirPosicionsValides(const Posicio& origen, Posicio posicionsVal
                     posicionsValides[nPosicionsValides++] = Posicio(fila + 1, columna - 1);
                 }
 
-				if (fila - 1 >= 0 && columna + 1 < N_COLUMNES && m_tauler[fila - 1][columna + 1].esBuida()) //diagonal dreta dama endarere
+                if (fila - 1 >= 0 && columna + 1 < N_COLUMNES && m_tauler[fila - 1][columna + 1].esBuida()) //diagonal dreta dama endarere
                 {
                     posicionsValides[nPosicionsValides++] = Posicio(fila - 1, columna + 1);
                 }
@@ -382,27 +429,27 @@ bool Tauler::esCaptura(const Posicio& origen, const Posicio& desti)
 {
     bool capturem = false;
 
-	int filaOrigen = origen.getFila();
-	int columnaOrigen = origen.getColumna();
-	int filaDesti = desti.getFila();
-	int columnaDesti = desti.getColumna();
+    int filaOrigen = origen.getFila();
+    int columnaOrigen = origen.getColumna();
+    int filaDesti = desti.getFila();
+    int columnaDesti = desti.getColumna();
 
-	if ((filaOrigen - filaDesti) == 2 || (filaOrigen - filaDesti) == -2)
-	{
-		if ((filaOrigen - filaDesti) == 2 || (filaOrigen - filaDesti) == -2 && (columnaOrigen - columnaDesti) == 2 || (columnaOrigen - columnaDesti) == -2)
-		{
-			int filaDelMig = (filaOrigen + filaDesti) / 2;
-			int columnaDelMig = (columnaOrigen + columnaDesti) / 2;
+    if ((filaOrigen - filaDesti) == 2 || (filaOrigen - filaDesti) == -2)
+    {
+        if ((filaOrigen - filaDesti) == 2 || (filaOrigen - filaDesti) == -2 && (columnaOrigen - columnaDesti) == 2 || (columnaOrigen - columnaDesti) == -2)
+        {
+            int filaDelMig = (filaOrigen + filaDesti) / 2;
+            int columnaDelMig = (columnaOrigen + columnaDesti) / 2;
 
-			const Fitxa& fitxaOrigen = m_tauler[filaOrigen][columnaOrigen];
+            const Fitxa& fitxaOrigen = m_tauler[filaOrigen][columnaOrigen];
             const Fitxa& fitxaDelMig = m_tauler[filaDelMig][columnaDelMig];
 
             if (!fitxaDelMig.esBuida() && fitxaDelMig.getColor() != fitxaOrigen.getColor())
             {
-				capturem = true;
+                capturem = true;
             }
-		}
-	}
+        }
+    }
 
     return capturem;
 }
