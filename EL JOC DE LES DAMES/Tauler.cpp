@@ -177,8 +177,6 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
     return movimentValid;
 }
 
-
-
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
 {
     nPosicions = 0;
@@ -232,7 +230,6 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
     }
 }
 
-
 void Tauler::establirFitxa(const Posicio& posicio, const Fitxa& fitxa)
 {
     int fila = posicio.getFila();
@@ -243,6 +240,7 @@ void Tauler::establirFitxa(const Posicio& posicio, const Fitxa& fitxa)
 
 string Tauler::toString() const
 {
+
     string resultat = "";
 
     for (int fila = 0; fila < N_FILES; fila++)
