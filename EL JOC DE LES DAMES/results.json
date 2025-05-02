@@ -1,5 +1,5 @@
 {
-    "score": 4.0,
+    "score": 5.0,
     "stdout_visibility": "visible",
     "tests": [
         {
@@ -118,14 +118,14 @@
         },
         {
             "name": "TEST MOVIMENT FITXA 6",
-            "output": "\nTEST MOVIMENT FITXA 6\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_6.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ X _ X _ _\n7: X _ X _ _ _ _ _\n6: _ X _ X _ X _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ D _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: d4 a posicio g7\nMoviment dama amb captura\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ X _ X _ _\n7: X _ X _ _ _ D _\n6: _ X _ X _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ _ _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: TRUE \n-------\nContingut obtingut del tauler despres del moviment: \n8: _ X _ X _ X _ _ \n7: X _ X _ _ _ D _ \n6: _ X _ X _ X _ X \n5: _ _ _ _ _ _ _ _ \n4: _ _ _ _ _ _ _ _ \n3: O _ _ _ _ _ O _ \n2: _ O _ O _ O _ O \n1: O _ O _ O _ O _ \n   a b c d e f g h\n\n----------------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENT FITXA 6\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_6.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ X _ X _ _\n7: X _ X _ _ _ _ _\n6: _ X _ X _ X _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ D _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: d4 a posicio g7\nMoviment dama amb captura\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ X _ X _ _\n7: X _ X _ _ _ D _\n6: _ X _ X _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ _ _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: TRUE \n-------\nContingut obtingut del tauler despres del moviment: \n8: _ X _ X _ X _ _ \n7: X _ X _ _ _ D _ \n6: _ X _ X _ _ _ X \n5: _ _ _ _ _ _ _ _ \n4: _ _ _ _ _ _ _ _ \n3: O _ _ _ _ _ O _ \n2: _ O _ O _ O _ O \n1: O _ O _ O _ O _ \n   a b c d e f g h\n\n----------------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
             "name": "TEST MOVIMENT FITXA 7",
-            "output": "\nTEST MOVIMENT FITXA 7\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_7.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ _ _ X _ _\n7: X _ X _ X _ D _\n6: _ X _ _ _ _ _ X\n5: _ _ _ _ X _ _ _\n4: _ _ _ _ _ O _ _\n3: O _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: g7 a posicio d4\nMoviment amb varies opcions de captura que no impliquen bufar fitxa\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ _ _ X _ _\n7: X _ X _ X _ _ _\n6: _ X _ _ _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ D _ O _ _\n3: O _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: FALSE \n-------\nContingut obtingut del tauler despres del moviment: \n8: _ X _ _ _ X _ _ \n7: X _ X _ X _ D _ \n6: _ X _ _ _ _ _ X \n5: _ _ _ _ X _ _ _ \n4: _ _ _ _ _ O _ _ \n3: O _ _ _ _ _ _ _ \n2: _ O _ O _ O _ O \n1: O _ O _ O _ O _ \n   a b c d e f g h\n\n----------------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENT FITXA 7\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_7.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ _ _ X _ _\n7: X _ X _ X _ D _\n6: _ X _ _ _ _ _ X\n5: _ _ _ _ X _ _ _\n4: _ _ _ _ _ O _ _\n3: O _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: g7 a posicio d4\nMoviment amb varies opcions de captura que no impliquen bufar fitxa\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ _ _ X _ _\n7: X _ X _ X _ _ _\n6: _ X _ _ _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ D _ O _ _\n3: O _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: TRUE \n-------\nContingut obtingut del tauler despres del moviment: \n8: _ X _ _ _ X _ _ \n7: X _ X _ X _ _ _ \n6: _ X _ _ _ _ _ X \n5: _ _ _ _ _ _ _ _ \n4: _ _ _ D _ O _ _ \n3: O _ _ _ _ _ _ _ \n2: _ O _ O _ O _ O \n1: O _ O _ O _ O _ \n   a b c d e f g h\n\n----------------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
