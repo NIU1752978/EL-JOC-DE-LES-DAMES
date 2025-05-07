@@ -113,23 +113,20 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
     bool movimentValid = false;
 
-    Fitxa fitxaOrigen = m_tauler[origen.getFila()][origen.getColumna()]; // obtenim la fitxa d'origen
+    Fitxa fitxaOrigen = m_tauler[origen.getFila()][origen.getColumna()]; 
 
-    for (int i = 0; i < fitxaOrigen.getNumMoviments(); i++) // te moviments vàlids?
+    for (int i = 0; i < fitxaOrigen.getNumMoviments(); i++) 
     {
         Moviment mov = fitxaOrigen.getMoviment(i);
 
-        if (mov.getUltimaPosicio() == desti) // mirem si la última posició del moviment és el destí
+        if (mov.getUltimaPosicio() == desti) 
         {
             movimentValid = true;
 
-            // Eliminem la fitxa d'origen
             m_tauler[origen.getFila()][origen.getColumna()] = Fitxa();
 
-            // Posem la fitxa a la destinació
             m_tauler[desti.getFila()][desti.getColumna()] = fitxaOrigen;
 
-            // Si hi ha captures, eliminem les peces capturades
             if (mov.getPecesMates() > 0)
             {
                 for (int j = 1; j < mov.getNumPosicions(); j++)
@@ -153,9 +150,8 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
                         Fitxa& fitxaIntermedia = m_tauler[filaActual][columnaActual];
                         if (!fitxaIntermedia.esBuida() && fitxaIntermedia.getColor() != fitxaOrigen.getColor())
                         {
-                            // Eliminem la peça enemiga
                             m_tauler[filaActual][columnaActual] = Fitxa();
-                            break; // Només una peça entre cada parella de posicions
+                            break; 
                         }
                         filaActual += incrementFila;
                         columnaActual += incrementColumna;
@@ -163,14 +159,13 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
                 }
             }
 
-            // Convertir en dama si arriba a la fila final
             if ((fitxaOrigen.getColor() == COLOR_BLANC && desti.getFila() == 0) ||
                 (fitxaOrigen.getColor() == COLOR_NEGRE && desti.getFila() == N_FILES - 1))
             {
                 m_tauler[desti.getFila()][desti.getColumna()].setTipus(TIPUS_DAMA);
             }
 
-            break; // Ja hem trobat el moviment vàlid i fet
+            break; 
         }
     }
 
