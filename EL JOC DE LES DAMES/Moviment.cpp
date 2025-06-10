@@ -1,33 +1,57 @@
 #include "Moviment.h"
+#include "Tauler.h"
 
-void Moviment::afegeixPosicio(const Posicio& p)
-{
-	if (nPosicions < MAX_POSICIONS) //nova posicio al cami
-    {
+Moviment::Moviment() {
+    nPosicions = 0;
+}
+
+void Moviment::afegeixPosicio(const Posicio& p) {
+    if (nPosicions < MAX_POSICIONS) {
         cami[nPosicions++] = p;
     }
 }
 
-Posicio Moviment::getUltimaPosicio() const // retorna la ultima posicio del moviment
-{
-    Posicio resultat;
-
-    if (nPosicions > 0) 
-    {
-		resultat = cami[nPosicions - 1]; //n-1 es la darrera posicio
-    }
-    return resultat;
+int Moviment::getNPosicions() const {
+    return nPosicions;
 }
 
-void Moviment::mostra() const
-{
-    for (int i = 0; i < nPosicions; i++) 
-    {
-		cout << cami[i].getPosicio(); // mostra la posicio del cami
-        if (i != nPosicions - 1) 
-        {
-			cout << " - "; // separador entre posicions
-        };
+Posicio Moviment::getPosicio(int i) const {
+    return cami[i];
+}
+
+Posicio Moviment::getDesti() const {
+    if (nPosicions > 0) {
+        return cami[nPosicions - 1];
     }
-    cout << endl;
+    return Posicio();
+}
+
+int Moviment::getNumDamesCapturades(const Tauler& tauler) const {
+    int n = 0;
+
+    for (int i = 0; i < nPosicions - 1; ++i) {
+        Posicio p1 = cami[i];
+        Posicio p2 = cami[i + 1];
+
+        int filaCap = (p1.getFila() + p2.getFila()) / 2;
+        int colCap = (p1.getColumna() + p2.getColumna()) / 2;
+
+        if (abs(p1.getFila() - p2.getFila()) > 1 && abs(p1.getColumna() - p2.getColumna()) > 1) {
+            const Fitxa& f = tauler.getFitxa(filaCap, colCap);
+            if (f.getTipus() == TIPUS_DAMA) {
+                ++n;
+            }
+        }
+    }
+
+    return n;
+}
+
+ostream& operator<<(ostream& os, const Moviment& m) {
+    for (int i = 0; i < m.getNPosicions(); ++i) {
+        os << m.getPosicio(i);
+        if (i < m.getNPosicions() - 1)
+            os << " - ";
+    }
+    return os;
 }

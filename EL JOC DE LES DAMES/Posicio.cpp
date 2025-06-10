@@ -1,50 +1,43 @@
 #include "Posicio.h"
+#include "Tauler.h"
 
-Posicio::Posicio(const string& posicio) : m_posicio(posicio) // he cambiat el constructor, possible solucio al problema de que no apraeixen ben representades les fitxes al tauler
-{
-    if (posicio.length() >= 2) // longitud cadena sigui correcta
-    {
-        char lletraColumna = posicio[0];
-        int numeroFila = posicio[1] - '0';
+Posicio::Posicio(const string& posicio) : m_posicio(posicio) {
+    if (posicio.size() >= 2) {
+        char colChar = tolower(posicio[0]);
+        char filaChar = posicio[1];
 
-		m_columna = lletraColumna - 'a'; // exemple b - a = 1
-		m_fila = 8 - numeroFila;    
+        if (colChar >= 'a' && colChar <= 'h' && filaChar >= '1' && filaChar <= '8') {
+            m_columna = colChar - 'a';
+            m_fila = 8 - (filaChar - '0');
+        }
+        else {
+            m_fila = m_columna = -1;
+        }
     }
-    else
-    {
-        m_fila = -1;
-		m_columna = -1; // no valida    
+    else {
+        m_fila = m_columna = -1;
     }
 }
 
-bool Posicio::posicioValida() const // comprovem si esta dins tauler
-{
-	return (m_fila >= 0 && m_fila < 8 && m_columna >= 0 && m_columna < 8);
+bool Posicio::posicioValida() const {
+    return m_fila >= 0 && m_fila < 8 && m_columna >= 0 && m_columna < 8;
 }
 
-bool Posicio::operator==(const Posicio& posicio) const // comprovem si dues posicions son iguals
-{
-	bool igual = false;
-
-	if (m_fila == posicio.m_fila && m_columna == posicio.m_columna)
-	{
-		igual = true;
-	}
-
-	return igual;
+bool Posicio::operator==(const Posicio& pos) const {
+    return m_fila == pos.m_fila && m_columna == pos.m_columna;
 }
 
-ostream& operator<<(ostream& out, const Posicio& pos) // sobrecarguem l'operador << per mostrar la posicio
-{
-    if (pos.posicioValida())
-    {
-		char lletraColumna = 'a' + pos.getColumna();  // exemple a + 1 = b
-        int numeroFila = 8 - pos.getFila();
-        out << lletraColumna << numeroFila;
-    }
-    else
-    {
-        out << "Posicio no valida";
-    }
-    return out;
+std::string Posicio::toString() const {
+    char lletraCol = 'a' + m_columna;
+    char numFila = '1' + (7 - m_fila); // fila 0 ? 8, fila 7 ? 1
+    return std::string() + lletraCol + numFila;
 }
+
+
+std::ostream& operator<<(std::ostream& os, const Posicio& p) {
+    char columnaChar = 'a' + p.getColumna();
+    char filaChar = '1' + (7 - p.getFila());
+    os << columnaChar << filaChar;
+    return os;
+}
+
