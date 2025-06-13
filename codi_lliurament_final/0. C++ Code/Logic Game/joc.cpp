@@ -102,6 +102,7 @@ void Joc::inicialitza(ModeJoc mode, const std::string& nomFitxerTauler, const st
     m_mode = mode;
     m_tauler.inicialitza("tauler_inicial.txt");  // carrega el tauler
 
+
     m_hiHaFitxaSeleccionada = false;
     m_partidaAcabada = false;
     m_guanyador = CAP_GUANYADOR;
@@ -194,7 +195,7 @@ void Joc::mostraGuanyador() const
     }
 
     if (mostrar) {
-        GraphicManager::getInstance()->drawFont(FONT_GREEN_30, 50, 700, 1.0, text);
+        GraphicManager::getInstance()->drawFont(FONT_GREEN_30, 50, 750, 1.0, text);
     }
 }
 

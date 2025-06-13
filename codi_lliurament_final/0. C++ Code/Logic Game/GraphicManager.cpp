@@ -64,7 +64,7 @@ string GraphicManager::getImagePath(IMAGE_NAME name){
             path = "data/GUI/fons.png";
             break;
         case GRAFIC_TAULER:
-            path = "data/GUI/tauler2.png";
+            path = "data/GUI/tauler2.1.png";
             break;
 		case GRAFIC_POSICIO_VALIDA:
 			path = "data/GUI/posicio_valida.png";
