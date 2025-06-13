@@ -1,6 +1,0 @@
-﻿  joc.cpp
-C:\Users\usuari\Documents\ENGINYERIA INFORMATICA\MP\MP-Curs-24-25\projecte\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(32,81): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuari\Documents\ENGINYERIA INFORMATICA\MP\MP-Curs-24-25\projecte\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(32,78): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  main.cpp
-  Generando código...
-  MP_Practica.vcxproj -> C:\Users\usuari\Documents\ENGINYERIA INFORMATICA\MP\MP-Curs-24-25\projecte\codi_lliurament_final\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe
