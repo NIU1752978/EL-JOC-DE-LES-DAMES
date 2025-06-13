@@ -1,21 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\2. Platforms\\0. Windows Desktop\\",
+  "WorkspaceRootPath": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORMATICA\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\2. Platforms\\0. Windows Desktop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{95EBFF15-EE8A-4B39-B29E-6E414EFC541A}|MP_Practica.vcxproj|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\info_joc.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95EBFF15-EE8A-4B39-B29E-6E414EFC541A}|MP_Practica.vcxproj|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95EBFF15-EE8A-4B39-B29E-6E414EFC541A}|MP_Practica.vcxproj|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\joc.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95EBFF15-EE8A-4B39-B29E-6E414EFC541A}|MP_Practica.vcxproj|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\joc.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95EBFF15-EE8A-4B39-B29E-6E414EFC541A}|MP_Practica.vcxproj|C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\GraphicManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{95EBFF15-EE8A-4B39-B29E-6E414EFC541A}|MP_Practica.vcxproj|C:\\Users\\usuari\\Documents\\ENGINYERIA INFORMATICA\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,71 +13,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GraphicManager.cpp",
-              "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\GraphicManager.cpp",
-              "RelativeDocumentMoniker": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\GraphicManager.cpp",
-              "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\GraphicManager.cpp",
-              "RelativeToolTip": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\GraphicManager.cpp",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAEIAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-13T15:26:03.857Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "info_joc.hpp",
-              "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\info_joc.hpp",
-              "RelativeDocumentMoniker": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\info_joc.hpp",
-              "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\info_joc.hpp",
-              "RelativeToolTip": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\info_joc.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-13T14:48:26.61Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Tauler.cpp",
-              "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp",
+              "DocumentMoniker": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORMATICA\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp",
               "RelativeDocumentMoniker": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp",
-              "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp",
+              "ToolTip": "C:\\Users\\usuari\\Documents\\ENGINYERIA INFORMATICA\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp",
               "RelativeToolTip": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\Tauler.cpp",
-              "ViewState": "AgIAAM0CAAAAAAAAAAAowOECAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAkEAAAAAAAAAAAAACYEAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-13T14:44:50.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "joc.cpp",
-              "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\joc.cpp",
-              "RelativeDocumentMoniker": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\joc.cpp",
-              "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\joc.cpp",
-              "RelativeToolTip": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\joc.cpp",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAowNMAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-13T13:27:36.847Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "joc.hpp",
-              "DocumentMoniker": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\joc.hpp",
-              "RelativeDocumentMoniker": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\joc.hpp",
-              "ToolTip": "C:\\Users\\kigna\\Documents\\GitHub\\EL-JOC-DE-LES-DAMES\\codi_lliurament_final\\0. C\u002B\u002B Code\\Logic Game\\joc.hpp",
-              "RelativeToolTip": "..\\..\\0. C\u002B\u002B Code\\Logic Game\\joc.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-13T14:08:12.574Z",
+              "WhenOpened": "2025-06-13T16:41:15.027Z",
               "EditorCaption": ""
             }
           ]

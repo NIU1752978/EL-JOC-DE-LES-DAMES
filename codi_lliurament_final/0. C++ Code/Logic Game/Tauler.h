@@ -29,10 +29,8 @@ public:
     void afegeixMovimentsFitxaNormal(int fila, int columna);
     void afegeixMovimentsFitxaDama(int fila, int columna);
     bool esCapturaDisponible(const Fitxa& fitxa, int fila, int columna) const;
-    void obtenirMovimentsDesDePosicio(const Fitxa& fitxa, int fila, int columna, Moviment movimentActual,
-        Moviment possiblesMoviments[], int& nMoviments, bool& capturaTrobada);
-    void obtenirMovimentsDamaDesDePosicio(const Fitxa& fitxa, int fila, int columna, Moviment movimentActual,
-        Moviment possiblesMoviments[], int& nMoviments);
+    void obtenirMovimentsDesDePosicio(const Fitxa& fitxa, int fila, int columna, Moviment movimentActual, Moviment possiblesMoviments[], int& nMoviments, bool& capturaTrobada);
+    void obtenirMovimentsDamaDesDePosicio(const Fitxa& fitxa, int fila, int columna, Moviment movimentActual, Moviment possiblesMoviments[], int& nMoviments);
     void eliminaFitxesCapturades(const Moviment& m);
     void bufarSiNoHaFetMillorCaptura(const Posicio& origenSeleccionada, const Moviment& movimentFet, ColorFitxa tornActual);
     const Fitxa& getFitxa(int fila, int columna) const;

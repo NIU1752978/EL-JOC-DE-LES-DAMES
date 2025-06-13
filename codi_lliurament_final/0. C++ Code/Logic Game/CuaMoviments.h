@@ -23,8 +23,8 @@ public:
     bool esBuida() const;
     void buida();
 
-    void guardaEnFitxer(const std::string& nomFitxer) const;
-    void carregaDeFitxer(const std::string& nomFitxer);
+    void guardaEnFitxer(const string& nomFitxer) const;
+    void carregaDeFitxer(const string& nomFitxer);
 
 private:
     Node* m_inici;

@@ -28,7 +28,7 @@ private:
     ColorFitxa m_tornActual;
 
     // Fitxer per guardar/reproduir
-    std::string m_nomFitxerMoviments;
+    string m_nomFitxerMoviments;
 
     // Tauler i moviments
     Tauler m_tauler;
@@ -39,7 +39,7 @@ private:
     bool guardat;
     Posicio m_fichaSeleccionada;
     vector<Posicio> m_posicionsValides;
-    std::string m_missatgeTemporal;  // missatge que persistirà
+    string m_missatgeTemporal;  // missatge que persistirà
 
     // Mètodes auxiliars
     bool esClicEnCasella(int mouseX, int mouseY) const;

@@ -16,13 +16,6 @@
 #include <conio.h>      /* getch */ 
 
 #elif __APPLE__
-//Llibreria grafica
-#include "../Graphic Lib/libreria.h"
-#include "../Graphic Lib/NFont/NFont.h"
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdocumentation"
-#include <SDL2/SDL.h>
-#pragma clang diagnostic pop
 
 #endif
 
@@ -42,7 +35,7 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
-    joc.inicialitza(MODE_JOC_NORMAL, "tauler_inicial.txt", "moviments.txt");
+    joc.inicialitza(MODE_JOC_REPLAY, "tauler_inicial.txt", "moviments.txt");
 
     do
     {

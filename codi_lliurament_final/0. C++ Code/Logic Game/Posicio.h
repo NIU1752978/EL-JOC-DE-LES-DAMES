@@ -23,7 +23,7 @@ public:
 	void setFila(int fila) { m_fila = fila; }
 	void setColumna(int columna) { m_columna = columna; }
 
-	std::string toString() const;
+	string toString() const;
 
 	bool operator==(const Posicio& posicio) const;
 private:

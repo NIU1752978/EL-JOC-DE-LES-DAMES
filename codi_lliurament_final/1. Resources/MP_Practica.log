@@ -1,7 +1,2 @@
 ﻿  Tauler.cpp
-  joc.cpp
-C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(32,81): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(32,78): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  main.cpp
-  Generando código...
-  MP_Practica.vcxproj -> C:\Users\kigna\Documents\GitHub\EL-JOC-DE-LES-DAMES\codi_lliurament_final\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe
+  MP_Practica.vcxproj -> C:\Users\usuari\Documents\ENGINYERIA INFORMATICA\EL-JOC-DE-LES-DAMES\codi_lliurament_final\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe
