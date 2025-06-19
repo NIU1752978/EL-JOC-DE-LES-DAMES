@@ -1,6 +1,6 @@
 #include "CuaMoviments.h"
 #include <fstream>
-
+//Controlar, desar i recuperar els moviments realitzats durant la partida.
 // Constructor: inicialitza els punters a nullptr
 CuaMoviments::CuaMoviments() : m_inici(nullptr), m_final(nullptr) {}
 

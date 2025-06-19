@@ -36,10 +36,7 @@ void GraphicManager::drawSprite(IMAGE_NAME name, float posX, float posY)
 }
 
 // Dibuixa text a la pantalla amb la font especificada i retorna la seva àrea
-NFont::Rectf GraphicManager::drawFont(FONT_NAME name,
-    float posX, float posY,
-    float size,
-    const string& msg)
+NFont::Rectf GraphicManager::drawFont(FONT_NAME name, float posX, float posY, float size, const string& msg)
 {
     switch (name) {
     case FONT_GREEN_30:

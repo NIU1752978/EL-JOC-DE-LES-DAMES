@@ -10,6 +10,10 @@
 #include <fstream>
 #include "GraphicManager.h"
 
+//Controlar el flux del joc (torns, mode de joc, condicions de finalització, visualització d’estat).
+
+
+//Actualitza l’estat del joc cada clic.
 bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 {
     bool resultat = false;
@@ -103,6 +107,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
     return resultat;  // indica si la partida ha acabat
 }
 
+//Inicialitza la partida.   
 void Joc::inicialitza(ModeJoc mode, const std::string& nomFitxerTauler, const std::string& nomFitxerMoviments)
 {
     m_mode = mode;
@@ -123,6 +128,7 @@ void Joc::inicialitza(ModeJoc mode, const std::string& nomFitxerTauler, const st
     }
 }
 
+//Desa els moviments si és en mode normal.
 void Joc::finalitza()
 {
     if (m_mode == MODE_JOC_NORMAL) {
@@ -130,6 +136,7 @@ void Joc::finalitza()
     }
 }
 
+//Control del clic del jugador.
 bool Joc::esClicEnCasella(int mouseX, int mouseY) const
 {
     return (mouseX >= POS_X_TAULER + CASELLA_INICIAL_X &&
@@ -137,14 +144,12 @@ bool Joc::esClicEnCasella(int mouseX, int mouseY) const
         mouseY >= POS_Y_TAULER + CASELLA_INICIAL_Y &&
         mouseY < POS_Y_TAULER + CASELLA_INICIAL_Y + N_FILES * ALCADA_CASELLA); //Retorna true si el clic ha sigut dins del tauler.
 }
-
 Posicio Joc::obtenirCasellaClicada(int mouseX, int mouseY) const
 {
     int fila = (mouseY - POS_Y_TAULER - CASELLA_INICIAL_Y) / ALCADA_CASELLA;
     int columna = (mouseX - POS_X_TAULER - CASELLA_INICIAL_X) / AMPLADA_CASELLA;
     return Posicio(fila, columna); //Tradueix la posició del clic en coordenades de casella (fila, columna).
 }
-
 bool Joc::esClicEnPosicioValida(const Posicio& clic) const
 {
     bool esValid = false;
@@ -158,6 +163,7 @@ bool Joc::esClicEnPosicioValida(const Posicio& clic) const
 	return esValid; //Retorna true si el clic ha sigut en una posició vàlida per moure la fitxa seleccionada.
 }
 
+//Mostra mode i torn actual.
 void Joc::mostraInformacioModeITorn() const
 {
     std::string text;
@@ -209,6 +215,7 @@ void Joc::mostraInformacioModeITorn() const
     GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 50, 30, 1.0, text);
 }
 
+//Mostra el guanyador.
 void Joc::mostraGuanyador() const
 {
     std::string text;
@@ -228,11 +235,7 @@ void Joc::mostraGuanyador() const
     }
 }
 
-void Joc::mostraMissatge(const std::string& text)
-{
-    m_missatgeTemporal = text;  // guarda el missatge per dibuixar-lo després
-}
-
+//Comprova si s’ha acabat la partida i qui guanya.
 void Joc::actualitzaEstatPartida()
 {
     bool esReplay = (m_mode == MODE_JOC_REPLAY);
@@ -267,4 +270,9 @@ void Joc::actualitzaEstatPartida()
             }
         }
     }
+}
+
+void Joc::mostraMissatge(const std::string& text)
+{
+    m_missatgeTemporal = text;  // guarda el missatge per dibuixar-lo després
 }

@@ -35,7 +35,7 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
-    joc.inicialitza(MODE_JOC_REPLAY, "tauler_inicial.txt", "moviments.txt");
+    joc.inicialitza(MODE_JOC_NORMAL, "tauler_inicial.txt", "moviments.txt");
 
     do
     {

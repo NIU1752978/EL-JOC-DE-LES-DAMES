@@ -2,7 +2,7 @@
 #include "Fitxa.h"
 #include "Tauler.h"
 #include <sstream>  
-
+//Controlar, desar i recuperar els moviments realitzats durant la partida.
 // Constructor per defecte
 Moviment::Moviment() : m_nPosicions(0) {
     // Inicialitza totes les posicions amb posicions buides

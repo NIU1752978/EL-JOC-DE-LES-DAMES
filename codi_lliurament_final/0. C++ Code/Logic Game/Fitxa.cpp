@@ -1,6 +1,6 @@
 #include "Fitxa.h"
 #include "GraphicManager.h"
-
+//Gestionar l’estat del tauler i de les fitxes, incloent moviments, captures i promocions.
 // Converteix una fitxa normal en dama
 void Fitxa::convertirEnDama()
 {

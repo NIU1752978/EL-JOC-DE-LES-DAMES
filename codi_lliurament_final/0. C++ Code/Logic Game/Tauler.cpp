@@ -9,6 +9,8 @@
 #include "GraphicManager.h"
 
 using namespace std;
+//Gestionar l’estat del tauler i de les fitxes, incloent moviments, captures i promocions.
+
 
 Tauler::Tauler() {
     inicialitzaTaulerBuit();  // Inicialitza el tauler amb fitxes buides
@@ -24,6 +26,7 @@ Tauler::~Tauler() {
     }
 }
 
+//Inicialització i visualització
 void Tauler::inicialitzaTaulerBuit() {
     // Assigna una fitxa buida a cada casella del tauler
     for (int i = 0; i < N_FILES; ++i) {
@@ -79,6 +82,29 @@ void Tauler::inicialitza(const std::string& nomFitxer)
     }
 }
 
+//Pinta les fitxes.
+void Tauler::visualitza() const {
+    // Dibuixa el tauler de fons
+    GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+
+    // Recorre totes les files i columnes del tauler
+    for (int fila = 0; fila < N_FILES; ++fila) {
+        for (int col = 0; col < N_COLUMNES; ++col) {
+            // Comprova que hi ha una fitxa vàlida a la casella
+            if (m_tauler[fila][col] != nullptr) {
+                bool esBuida = m_tauler[fila][col]->esBuida();
+                if (!esBuida) {
+                    // Calcula la posició en píxels on dibuixar la fitxa
+                    int x = POS_X_TAULER + CASELLA_INICIAL_X + col * AMPLADA_CASELLA;
+                    int y = POS_Y_TAULER + CASELLA_INICIAL_Y + fila * ALCADA_CASELLA;
+
+                    // Dibuixa la fitxa en pantalla
+                    m_tauler[fila][col]->visualitza(x, y);
+                }
+            }
+        }
+    }
+}
 
 void Tauler::establirFitxa(const Posicio& pos, Fitxa* fitxa)
 {
@@ -88,6 +114,8 @@ void Tauler::establirFitxa(const Posicio& pos, Fitxa* fitxa)
 	m_tauler[fila][col] = fitxa; // Assignem la nova fitxa a la posició del tauler
 }
 
+//Moviments
+// Recalcula moviments possibles.
 void Tauler::actualitzaMovimentsValids()
 {
 	for (int fila = 0; fila < N_FILES; ++fila)
@@ -111,8 +139,9 @@ void Tauler::actualitzaMovimentsValids()
             }
         }
     }
-}
+} //Recalcula moviments possibles.
 
+//Mou fitxa i aplica captures, promocions, etc.
 Moviment Tauler::mouFitxa(const Posicio& origen, const Posicio& desti, ColorFitxa tornActual)
 {
     Moviment resultat;
@@ -207,6 +236,7 @@ Moviment Tauler::mouFitxa(const Posicio& origen, const Posicio& desti, ColorFitx
     return resultat;
 }
 
+//Retorna possibles destins.
 void Tauler::getPosicionsPossibles(const Posicio& origen, std::vector<Posicio>& posicionsPossibles) const {
     posicionsPossibles.clear();
 
@@ -278,144 +308,8 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, std::vector<Posicio>& 
     }
 }
 
-std::string Tauler::toString() const {
-    std::ostringstream resultat;
-
-    for (int fila = 0; fila < N_FILES; fila++) { // Itera sobre les files del tauler
-        char numeroFila = '0' + (N_FILES - fila);
-        resultat << numeroFila << ": ";
-
-        for (int columna = 0; columna < N_COLUMNES; columna++) { // Itera sobre les columnes del tauler
-            char c = '_';
-            const Fitxa& fitxa = *m_tauler[fila][columna];
-
-            if (!fitxa.esBuida()) {
-                if (fitxa.getTipus() == TIPUS_DAMA) {
-                    if (fitxa.getColor() == COLOR_BLANC) {
-                        c = 'D';
-                    }
-                    else {
-                        c = 'R';
-                    }
-                }
-                else {
-                    if (fitxa.getColor() == COLOR_BLANC) {
-                        c = 'O';
-                    }
-                    else {
-                        c = 'X';
-                    }
-                }
-            }
-
-            resultat << c << ' ';
-        }
-
-        resultat << '\n';
-    }
-
-    resultat << "   a b c d e f g h\n";
-    return resultat.str();
-}
-
-void Tauler::afegeixMovimentsFitxaNormal(int fila, int columna) {
-    // Obtenim una referència a la fitxa situada a la posició indicada
-    Fitxa& fitxa = *m_tauler[fila][columna];
-
-    // Verifiquem que la fitxa és de tipus normal i que no està buida
-    bool esFitxaNormal = (fitxa.getTipus() == TIPUS_NORMAL);
-    bool teFitxa = !fitxa.esBuida();
-
-    if (esFitxaNormal && teFitxa) {
-        // Inicialitzem estructura per guardar possibles captures
-        Moviment capturesPossibles[MAX_MOVIMENTS];
-        int nombreCaptures = 0;
-        bool sHaTrobatCaptura = false;
-
-        // Creem el moviment inicial amb la posició actual
-        Moviment movimentInici;
-        movimentInici.afegirPosicio(Posicio(fila, columna));
-
-        // Omplim l'array de captures possibles a partir de la posició actual
-        obtenirMovimentsDesDePosicio(
-            fitxa,
-            fila,
-            columna,
-            movimentInici,
-            capturesPossibles,
-            nombreCaptures,
-            sHaTrobatCaptura
-        );
-
-        // Afegim al conjunt de moviments vàlids les captures trobades
-        for (int i = 0; i < nombreCaptures; i++) {
-            fitxa.afegeixMovimentValid(capturesPossibles[i]);
-        }
-
-        // Si no s'ha trobat cap captura, afegim moviments normals (una casella endavant en diagonal)
-        if (!sHaTrobatCaptura) {
-            // Determinem la direcció segons el color de la fitxa
-            int direccio = 0;
-            if (fitxa.getColor() == COLOR_BLANC)
-                direccio = -1;
-            else if (fitxa.getColor() == COLOR_NEGRE)
-                direccio = 1;
-
-            // Recorrem les dues diagonals (esquerra i dreta)
-            for (int desviamentColumna = -1; desviamentColumna <= 1; desviamentColumna += 2) {
-                int novaFila = fila + direccio;
-                int novaColumna = columna + desviamentColumna;
-
-                // Comprovem si la nova posició està dins del tauler i buida
-                bool dinsLimits = esPosicioDinsTauler(novaFila, novaColumna);
-                bool casellaBuida = false;
-
-                if (dinsLimits)
-                    casellaBuida = m_tauler[novaFila][novaColumna]->esBuida();
-
-                if (dinsLimits && casellaBuida) {
-                    // Creem i afegim el moviment normal
-                    Moviment m;
-                    m.afegirPosicio(Posicio(fila, columna));
-                    m.afegirPosicio(Posicio(novaFila, novaColumna));
-                    fitxa.afegeixMovimentValid(m);
-                }
-            }
-        }
-    }
-}
-
-void Tauler::afegeixMovimentsFitxaDama(int fila, int columna) {
-    // Obtenim la fitxa que volem analitzar
-    Fitxa& fitxa = *m_tauler[fila][columna];
-
-    // Esborrem qualsevol moviment que hi hagués prèviament a la fitxa
-    fitxa.netejaMoviments();
-
-    // Creem un moviment inicial que comença des de la posició actual
-    Moviment movimentInicial;
-    movimentInicial.afegirPosicio(Posicio(fila, columna));
-
-    // Preparem l'estructura per guardar tots els moviments possibles
-    Moviment movimentsDetectats[MAX_MOVIMENTS];
-    int quantitatMoviments = 0;
-
-    // Cerquem totes les opcions de moviment possibles per a aquesta dama
-    obtenirMovimentsDamaDesDePosicio(
-        fitxa,
-        fila,
-        columna,
-        movimentInicial,
-        movimentsDetectats,
-        quantitatMoviments
-    );
-
-    // Afegim al conjunt de moviments vàlids els que s'han trobat
-    for (int i = 0; i < quantitatMoviments; i++) {
-        fitxa.afegeixMovimentValid(movimentsDetectats[i]);
-    }
-}
-
+//Validacions i suport
+// Comprova si es pot capturar.
 bool Tauler::esCapturaDisponible(const Fitxa& fitxa, int fila, int columna) const {
     bool capturaTrobada = false;
 
@@ -504,33 +398,6 @@ bool Tauler::esCapturaDisponible(const Fitxa& fitxa, int fila, int columna) cons
 
     return capturaTrobada;
 }
-
-bool Tauler::esPosicioDinsTauler(int fila, int columna) const {
-    return (fila >= 0 && fila < N_FILES && columna >= 0 && columna < N_COLUMNES);
-}
-
-bool Tauler::hiHaFitxaContraria(int fila, int col, ColorFitxa colorPropi) const
-{
-    // Inicialitzem la variable resultat com a fals (no s'ha trobat fitxa contrària)
-    bool resultat = false;
-
-    // Comprovem que la posició està dins dels límits del tauler
-    if (esPosicioDinsTauler(fila, col)) {
-        // Obtenim la fitxa a la posició especificada
-        const Fitxa& fitxa = *m_tauler[fila][col];
-
-        // Si la casella no està buida
-        if (!fitxa.esBuida()) {
-            // Comprovem si el color de la fitxa és diferent del del jugador
-            if (fitxa.getColor() != colorPropi) {
-                resultat = true; // És una fitxa contrària
-            }
-        }
-    }
-
-    return resultat;
-}
-
 bool Tauler::esCapturaPossible(const Fitxa& fitxa, int fila, int columna) const {
     // Inicialment suposem que no hi ha cap captura possible
     bool capturaPossible = false;
@@ -575,39 +442,358 @@ bool Tauler::esCapturaPossible(const Fitxa& fitxa, int fila, int columna) const 
     return capturaPossible;
 }
 
-void Tauler::simulaCaptura(const Posicio& origen, const Posicio& mig, const Posicio& desti, Fitxa& fitxaCapturada, Fitxa& fitxaOriginal)
+//Comprova si un moviment és realment de captura.
+bool Tauler::esMovimentCapturaReal(const Moviment& m) const {
+    // Inicialment suposem que no hi ha cap captura
+    bool capturaTrobada = false;
+
+    // Recorrem tots els trams entre posicions consecutives del moviment
+    for (int i = 0; i < m.getNPosicions() - 1 && !capturaTrobada; ++i) {
+        Posicio p1 = m.getPosicio(i);         // Posició d'origen
+        Posicio p2 = m.getPosicio(i + 1);     // Posició de destí
+
+        // Determinem la direcció vertical (dr) i horitzontal (dc)
+        int dr;
+        if (p2.getFila() - p1.getFila() > 0)
+            dr = 1;
+        else
+            dr = -1;
+
+        int dc;
+        if (p2.getColumna() - p1.getColumna() > 0)
+            dc = 1;
+        else
+            dc = -1;
+
+        int f = p1.getFila() + dr;
+        int c = p1.getColumna() + dc;
+
+        // Recorrem les caselles entre p1 i p2
+        while (f != p2.getFila() && c != p2.getColumna() && !capturaTrobada) {
+            if (!m_tauler[f][c]->esBuida()) {
+                // Comprovem si la fitxa trobada és d'un color diferent al de l'origen
+                ColorFitxa colorOrigen = m_tauler[p1.getFila()][p1.getColumna()]->getColor();
+                ColorFitxa colorActual = m_tauler[f][c]->getColor();
+
+                if (colorActual != colorOrigen) {
+                    capturaTrobada = true; // Confirmem que hi ha una captura real
+                }
+            }
+
+            // Avancem cap a la següent casella
+            f += dr;
+            c += dc;
+        }
+    }
+
+    return capturaTrobada;
+}
+
+// Elimina fitxes del tauler.
+void Tauler::eliminaFitxesCapturades(const Moviment& m) {
+    // Recorrem cada tram del moviment (cada parell de posicions consecutives)
+    for (int i = 0; i < m.getNPosicions() - 1; ++i) {
+        Posicio p1 = m.getPosicio(i);       // Posició d'origen
+        Posicio p2 = m.getPosicio(i + 1);   // Posició de destí
+
+        // Calculem la direcció del moviment (amunt o avall, esquerra o dreta)
+        int dr;
+        if (p2.getFila() - p1.getFila() > 0)
+            dr = 1; // Moviment cap avall
+        else
+            dr = -1; // Moviment cap amunt
+
+        int dc;
+        if (p2.getColumna() - p1.getColumna() > 0)
+            dc = 1; // Moviment cap a la dreta
+        else
+            dc = -1; // Moviment cap a l'esquerra
+
+        // Comencem just després de la posició inicial
+        int f = p1.getFila() + dr;
+        int c = p1.getColumna() + dc;
+        bool fitxaCapturada = false;
+
+        // Avancem pas a pas fins arribar a la posició final
+        while (f != p2.getFila() && c != p2.getColumna() && !fitxaCapturada) {
+            // Si trobem una fitxa, la suprimim perquè ha estat capturada
+            if (!m_tauler[f][c]->esBuida()) {
+                delete m_tauler[f][c];                // Alliberem la memòria de la fitxa
+                m_tauler[f][c] = new Fitxa();         // Substituïm per una fitxa buida
+                fitxaCapturada = true;                // Marquem que ja hem eliminat una fitxa en aquest tram
+            }
+            else {
+                f += dr;                              // Seguim avançant en la direcció
+                c += dc;
+            }
+        }
+    }
+}
+
+//Executa moviment(en mode replay).
+void Tauler::executaMoviment(const Moviment& moviment)
 {
-    // Guarda la fitxa capturada i la que es mourà
-    fitxaCapturada = *m_tauler[mig.getFila()][mig.getColumna()];
-    fitxaOriginal = *m_tauler[origen.getFila()][origen.getColumna()];
+    if (moviment.getNPosicions() >= 2) {
+        // 1. Copia la fitxa de la posició inicial
+        Posicio origen = moviment.getPosicio(0);
+        Fitxa fitxa = *m_tauler[origen.getFila()][origen.getColumna()];
 
-    // Buida la casella origen i la capturada
-    *m_tauler[origen.getFila()][origen.getColumna()] = Fitxa(); // Buit
-    *m_tauler[mig.getFila()][mig.getColumna()] = Fitxa();       // Buit
+        // 2. Buida la casella d’origen
+        *m_tauler[origen.getFila()][origen.getColumna()] = Fitxa();
 
-    // Mou la fitxa original a destí
-    *m_tauler[desti.getFila()][desti.getColumna()] = fitxaOriginal;
+        // 3. Elimina les fitxes capturades
+        eliminaFitxesCapturades(moviment);
+
+        // 4. Mou pas a pas fins al final
+        Posicio desti = moviment.getDesti();
+        *m_tauler[desti.getFila()][desti.getColumna()] = fitxa;
+
+        // 5. Comprova si s'ha de convertir en dama
+        bool esBlancaADama = (fitxa.getColor() == COLOR_BLANC && desti.getFila() == 0);
+        bool esNegraADama = (fitxa.getColor() == COLOR_NEGRE && desti.getFila() == N_FILES - 1);
+        if (esBlancaADama || esNegraADama) {
+            fitxa.convertirEnDama();
+            *m_tauler[desti.getFila()][desti.getColumna()] = fitxa;
+        }
+    }
 }
 
-void Tauler::desfesCaptura(const Posicio& origen, const Posicio& mig, const Posicio& desti, const Fitxa& fitxaCapturada, const Fitxa& fitxaOriginal) {
-    // Tornem la peça original a la seva posició
-    *m_tauler[origen.getFila()][origen.getColumna()] = fitxaOriginal;
+//Accés a fitxes.
+const Fitxa& Tauler::getFitxa(int fila, int columna) const {
+    return *m_tauler[fila][columna];  // accés per punter
+}
+ColorFitxa Tauler::getColorFitxa(const Posicio& pos) const {
+    // Inicialment retornem un valor per defecte que indica absència de fitxa
+    ColorFitxa color = CAP_GUANYADOR;
 
-    // Tornem la peça capturada al seu lloc
-    *m_tauler[mig.getFila()][mig.getColumna()] = fitxaCapturada;
+    // Obtenim la fila i la columna de la posició
+    int fila = pos.getFila();
+    int col = pos.getColumna();
 
-    // Eliminem la peça que havia anat a destí
-    *m_tauler[desti.getFila()][desti.getColumna()] = Fitxa();
+    // Comprovem que la posició estigui dins dels límits del tauler
+    bool dinsFiles = fila >= 0 && fila < N_FILES;
+    bool dinsColumnes = col >= 0 && col < N_COLUMNES;
+
+    if (dinsFiles && dinsColumnes) {
+        // Retornem el color real de la fitxa que hi ha a la casella
+        color = m_tauler[fila][col]->getColor();
+    }
+
+    return color;
 }
 
-void Tauler::obtenirMovimentsDesDePosicio(
-const Fitxa& fitxa,
-    int fila,
-    int columna,
-    Moviment movimentActual,
-    Moviment possiblesMoviments[],
-    int& nMoviments,
-    bool& capturaTrobada)
+//Comprova si un jugador pot moure.
+bool Tauler::teMoviments(ColorFitxa color) const {
+    // Suposem inicialment que no hi ha cap moviment disponible
+    bool hiHaMoviment = false;
+
+    // Recorrem totes les caselles del tauler
+    for (int fila = 0; fila < N_FILES && !hiHaMoviment; ++fila) {
+        for (int col = 0; col < N_COLUMNES && !hiHaMoviment; ++col) {
+
+            // Comprovem que hi ha una fitxa a la casella
+            bool casellaValida = (m_tauler[fila][col] != nullptr);
+            bool noEsBuida = false;
+            if (casellaValida)
+                noEsBuida = !m_tauler[fila][col]->esBuida();
+
+            // Si hi ha una fitxa no buida i del color que estem comprovant
+            if (casellaValida && noEsBuida && m_tauler[fila][col]->getColor() == color) {
+                vector<Posicio> moviments;
+                Posicio pos(fila, col);
+
+                // Obtenim els moviments possibles per a aquesta fitxa
+                getPosicionsPossibles(pos, moviments);
+
+                // Si trobem almenys un moviment, ho marquem i sortirem dels bucles
+                if (!moviments.empty()) {
+                    hiHaMoviment = true;
+                }
+            }
+        }
+    }
+
+    return hiHaMoviment;
+}
+
+//Aplica la regla de bufar
+void Tauler::bufarSiNoHaFetMillorCaptura(const Posicio& origen, const Moviment& movimentFet, ColorFitxa tornActual) {
+    // Comptem les captures fetes (número de salts menys 1)
+    int capturesFetes = movimentFet.getNPosicions() - 1;
+    bool sHaDeBufar = false;
+
+    // Només s'ha de bufar si no s'ha fet cap captura
+    if (capturesFetes == 0) {
+        for (int fila = 0; fila < N_FILES; ++fila) {
+            for (int col = 0; col < N_COLUMNES; ++col) {
+                // Ignorem la fitxa que s'acaba de moure
+                bool esMateixaPosicio = false;
+                if (fila == origen.getFila() && col == origen.getColumna())
+                    esMateixaPosicio = true;
+
+                if (!esMateixaPosicio) {
+                    Fitxa* fitxa = m_tauler[fila][col];
+
+                    // Comprovem si hi ha una fitxa del jugador actual
+                    if (!fitxa->esBuida() && fitxa->getColor() == tornActual) {
+                        // Mirem si té algun moviment que impliqui captura de més d'una fitxa
+                        for (int i = 0; i < fitxa->getNumMoviments(); ++i) {
+                            int nPosicions = fitxa->getMoviment(i).getNPosicions();
+                            if (nPosicions > 2) {
+                                sHaDeBufar = true;
+
+                                // Simulem sortida del bucle intern
+                                i = fitxa->getNumMoviments();
+                            }
+                        }
+                    }
+                }
+
+                // Si ja sabem que s'ha de bufar, sortim del bucle de columnes
+                if (sHaDeBufar) {
+                    col = N_COLUMNES;
+                }
+            }
+
+            // I també del bucle de files
+            if (sHaDeBufar) {
+                fila = N_FILES;
+            }
+        }
+    }
+
+    // Si cal bufar, eliminem la fitxa que s’ha mogut
+    if (sHaDeBufar) {
+        int f = origen.getFila();
+        int c = origen.getColumna();
+        delete m_tauler[f][c];
+        m_tauler[f][c] = new Fitxa(); // Posar una fitxa buida
+    }
+}
+
+//Generació i gestió de moviments vàlids
+//Calcular totes les jugades possibles des d'una posició del tauler, segons si la fitxa és normal o dama, incloent captures múltiples.
+void Tauler::afegeixMovimentsFitxaNormal(int fila, int columna) {
+    // Obtenim una referència a la fitxa situada a la posició indicada
+    Fitxa& fitxa = *m_tauler[fila][columna];
+
+    // Verifiquem que la fitxa és de tipus normal i que no està buida
+    bool esFitxaNormal = (fitxa.getTipus() == TIPUS_NORMAL);
+    bool teFitxa = !fitxa.esBuida();
+
+    if (esFitxaNormal && teFitxa) {
+        // Inicialitzem estructura per guardar possibles captures
+        Moviment capturesPossibles[MAX_MOVIMENTS];
+        int nombreCaptures = 0;
+        bool sHaTrobatCaptura = false;
+
+        // Creem el moviment inicial amb la posició actual
+        Moviment movimentInici;
+        movimentInici.afegirPosicio(Posicio(fila, columna));
+
+        // Omplim l'array de captures possibles a partir de la posició actual
+        obtenirMovimentsDesDePosicio(
+            fitxa,
+            fila,
+            columna,
+            movimentInici,
+            capturesPossibles,
+            nombreCaptures,
+            sHaTrobatCaptura
+        );
+
+        // Afegim al conjunt de moviments vàlids les captures trobades
+        for (int i = 0; i < nombreCaptures; i++) {
+            fitxa.afegeixMovimentValid(capturesPossibles[i]);
+        }
+
+        // Si no s'ha trobat cap captura, afegim moviments normals (una casella endavant en diagonal)
+        if (!sHaTrobatCaptura) {
+            // Determinem la direcció segons el color de la fitxa
+            int direccio = 0;
+            if (fitxa.getColor() == COLOR_BLANC)
+                direccio = -1;
+            else if (fitxa.getColor() == COLOR_NEGRE)
+                direccio = 1;
+
+            // Recorrem les dues diagonals (esquerra i dreta)
+            for (int desviamentColumna = -1; desviamentColumna <= 1; desviamentColumna += 2) {
+                int novaFila = fila + direccio;
+                int novaColumna = columna + desviamentColumna;
+
+                // Comprovem si la nova posició està dins del tauler i buida
+                bool dinsLimits = esPosicioDinsTauler(novaFila, novaColumna);
+                bool casellaBuida = false;
+
+                if (dinsLimits)
+                    casellaBuida = m_tauler[novaFila][novaColumna]->esBuida();
+
+                if (dinsLimits && casellaBuida) {
+                    // Creem i afegim el moviment normal
+                    Moviment m;
+                    m.afegirPosicio(Posicio(fila, columna));
+                    m.afegirPosicio(Posicio(novaFila, novaColumna));
+                    fitxa.afegeixMovimentValid(m);
+                }
+            }
+        }
+    }
+}
+void Tauler::afegeixMovimentsFitxaDama(int fila, int columna) {
+    // Obtenim la fitxa que volem analitzar
+    Fitxa& fitxa = *m_tauler[fila][columna];
+
+    // Esborrem qualsevol moviment que hi hagués prèviament a la fitxa
+    fitxa.netejaMoviments();
+
+    // Creem un moviment inicial que comença des de la posició actual
+    Moviment movimentInicial;
+    movimentInicial.afegirPosicio(Posicio(fila, columna));
+
+    // Preparem l'estructura per guardar tots els moviments possibles
+    Moviment movimentsDetectats[MAX_MOVIMENTS];
+    int quantitatMoviments = 0;
+
+    // Cerquem totes les opcions de moviment possibles per a aquesta dama
+    obtenirMovimentsDamaDesDePosicio(
+        fitxa,
+        fila,
+        columna,
+        movimentInicial,
+        movimentsDetectats,
+        quantitatMoviments
+    );
+
+    // Afegim al conjunt de moviments vàlids els que s'han trobat
+    for (int i = 0; i < quantitatMoviments; i++) {
+        fitxa.afegeixMovimentValid(movimentsDetectats[i]);
+    }
+}
+bool Tauler::esPosicioDinsTauler(int fila, int columna) const {
+    return (fila >= 0 && fila < N_FILES && columna >= 0 && columna < N_COLUMNES);
+}
+bool Tauler::hiHaFitxaContraria(int fila, int col, ColorFitxa colorPropi) const
+{
+    // Inicialitzem la variable resultat com a fals (no s'ha trobat fitxa contrària)
+    bool resultat = false;
+
+    // Comprovem que la posició està dins dels límits del tauler
+    if (esPosicioDinsTauler(fila, col)) {
+        // Obtenim la fitxa a la posició especificada
+        const Fitxa& fitxa = *m_tauler[fila][col];
+
+        // Si la casella no està buida
+        if (!fitxa.esBuida()) {
+            // Comprovem si el color de la fitxa és diferent del del jugador
+            if (fitxa.getColor() != colorPropi) {
+                resultat = true; // És una fitxa contrària
+            }
+        }
+    }
+
+    return resultat;
+}
+void Tauler::obtenirMovimentsDesDePosicio(const Fitxa& fitxa, int fila, int columna, Moviment movimentActual, Moviment possiblesMoviments[], int& nMoviments, bool& capturaTrobada)
 {
     // Direccions diagonals: baix-dreta, baix-esquerra, amunt-dreta, amunt-esquerra
     const int dirs[4][2] = { {1, 1}, {1, -1}, {-1, 1}, {-1, -1} };
@@ -711,7 +897,6 @@ const Fitxa& fitxa,
         }
     }
 }
-
 void Tauler::obtenirMovimentsDamaDesDePosicio(const Fitxa& fitxa, int fila, int columna, Moviment movimentActual, Moviment possiblesMoviments[], int& nMoviments) {
     // Definim les 4 direccions diagonals possibles
     const int dirs[4][2] = { {1, 1}, {1, -1}, {-1, 1}, {-1, -1} };
@@ -812,251 +997,70 @@ void Tauler::obtenirMovimentsDamaDesDePosicio(const Fitxa& fitxa, int fila, int 
     }
 }
 
-void Tauler::eliminaFitxesCapturades(const Moviment& m) {
-    // Recorrem cada tram del moviment (cada parell de posicions consecutives)
-    for (int i = 0; i < m.getNPosicions() - 1; ++i) {
-        Posicio p1 = m.getPosicio(i);       // Posició d'origen
-        Posicio p2 = m.getPosicio(i + 1);   // Posició de destí
+//Simulació i reversió de captures
+// Provar captures (com en les dames amb captura múltiple) sense alterar definitivament l’estat del tauler. Es fan servir dins dels 
+// algorismes de moviment recursius per provar possibles seqüències de captures.
+void Tauler::simulaCaptura(const Posicio& origen, const Posicio& mig, const Posicio& desti, Fitxa& fitxaCapturada, Fitxa& fitxaOriginal)
+{
+    // Guarda la fitxa capturada i la que es mourà
+    fitxaCapturada = *m_tauler[mig.getFila()][mig.getColumna()];
+    fitxaOriginal = *m_tauler[origen.getFila()][origen.getColumna()];
 
-        // Calculem la direcció del moviment (amunt o avall, esquerra o dreta)
-        int dr;
-        if (p2.getFila() - p1.getFila() > 0)
-            dr = 1; // Moviment cap avall
-        else
-            dr = -1; // Moviment cap amunt
+    // Buida la casella origen i la capturada
+    *m_tauler[origen.getFila()][origen.getColumna()] = Fitxa(); // Buit
+    *m_tauler[mig.getFila()][mig.getColumna()] = Fitxa();       // Buit
 
-        int dc;
-        if (p2.getColumna() - p1.getColumna() > 0)
-            dc = 1; // Moviment cap a la dreta
-        else
-            dc = -1; // Moviment cap a l'esquerra
+    // Mou la fitxa original a destí
+    *m_tauler[desti.getFila()][desti.getColumna()] = fitxaOriginal;
+}
+void Tauler::desfesCaptura(const Posicio& origen, const Posicio& mig, const Posicio& desti, const Fitxa& fitxaCapturada, const Fitxa& fitxaOriginal) {
+    // Tornem la peça original a la seva posició
+    *m_tauler[origen.getFila()][origen.getColumna()] = fitxaOriginal;
 
-        // Comencem just després de la posició inicial
-        int f = p1.getFila() + dr;
-        int c = p1.getColumna() + dc;
-        bool fitxaCapturada = false;
+    // Tornem la peça capturada al seu lloc
+    *m_tauler[mig.getFila()][mig.getColumna()] = fitxaCapturada;
 
-        // Avancem pas a pas fins arribar a la posició final
-        while (f != p2.getFila() && c != p2.getColumna() && !fitxaCapturada) {
-            // Si trobem una fitxa, la suprimim perquè ha estat capturada
-            if (!m_tauler[f][c]->esBuida()) {
-                delete m_tauler[f][c];                // Alliberem la memòria de la fitxa
-                m_tauler[f][c] = new Fitxa();         // Substituïm per una fitxa buida
-                fitxaCapturada = true;                // Marquem que ja hem eliminat una fitxa en aquest tram
-            }
-            else {
-                f += dr;                              // Seguim avançant en la direcció
-                c += dc;
-            }
-        }
-    }
+    // Eliminem la peça que havia anat a destí
+    *m_tauler[desti.getFila()][desti.getColumna()] = Fitxa();
 }
 
-void Tauler::bufarSiNoHaFetMillorCaptura(const Posicio& origen, const Moviment& movimentFet, ColorFitxa tornActual) {
-    // Comptem les captures fetes (número de salts menys 1)
-    int capturesFetes = movimentFet.getNPosicions() - 1;
-    bool sHaDeBufar = false;
+//representació del tauler
+std::string Tauler::toString() const {
+    std::ostringstream resultat;
 
-    // Només s'ha de bufar si no s'ha fet cap captura
-    if (capturesFetes == 0) {
-        for (int fila = 0; fila < N_FILES; ++fila) {
-            for (int col = 0; col < N_COLUMNES; ++col) {
-                // Ignorem la fitxa que s'acaba de moure
-                bool esMateixaPosicio = false;
-                if (fila == origen.getFila() && col == origen.getColumna())
-                    esMateixaPosicio = true;
+    for (int fila = 0; fila < N_FILES; fila++) { // Itera sobre les files del tauler
+        char numeroFila = '0' + (N_FILES - fila);
+        resultat << numeroFila << ": ";
 
-                if (!esMateixaPosicio) {
-                    Fitxa* fitxa = m_tauler[fila][col];
+        for (int columna = 0; columna < N_COLUMNES; columna++) { // Itera sobre les columnes del tauler
+            char c = '_';
+            const Fitxa& fitxa = *m_tauler[fila][columna];
 
-                    // Comprovem si hi ha una fitxa del jugador actual
-                    if (!fitxa->esBuida() && fitxa->getColor() == tornActual) {
-                        // Mirem si té algun moviment que impliqui captura de més d'una fitxa
-                        for (int i = 0; i < fitxa->getNumMoviments(); ++i) {
-                            int nPosicions = fitxa->getMoviment(i).getNPosicions();
-                            if (nPosicions > 2) {
-                                sHaDeBufar = true;
-
-                                // Simulem sortida del bucle intern
-                                i = fitxa->getNumMoviments();
-                            }
-                        }
+            if (!fitxa.esBuida()) {
+                if (fitxa.getTipus() == TIPUS_DAMA) {
+                    if (fitxa.getColor() == COLOR_BLANC) {
+                        c = 'D';
+                    }
+                    else {
+                        c = 'R';
                     }
                 }
-
-                // Si ja sabem que s'ha de bufar, sortim del bucle de columnes
-                if (sHaDeBufar) {
-                    col = N_COLUMNES;
+                else {
+                    if (fitxa.getColor() == COLOR_BLANC) {
+                        c = 'O';
+                    }
+                    else {
+                        c = 'X';
+                    }
                 }
             }
 
-            // I també del bucle de files
-            if (sHaDeBufar) {
-                fila = N_FILES;
-            }
+            resultat << c << ' ';
         }
+
+        resultat << '\n';
     }
 
-    // Si cal bufar, eliminem la fitxa que s’ha mogut
-    if (sHaDeBufar) {
-        int f = origen.getFila();
-        int c = origen.getColumna();
-        delete m_tauler[f][c];
-        m_tauler[f][c] = new Fitxa(); // Posar una fitxa buida
-    }
-}
-
-const Fitxa& Tauler::getFitxa(int fila, int columna) const {
-    return *m_tauler[fila][columna];  // accés per punter
-}
-
-void Tauler::visualitza() const {
-    // Dibuixa el tauler de fons
-    GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
-
-    // Recorre totes les files i columnes del tauler
-    for (int fila = 0; fila < N_FILES; ++fila) {
-        for (int col = 0; col < N_COLUMNES; ++col) {
-            // Comprova que hi ha una fitxa vàlida a la casella
-            if (m_tauler[fila][col] != nullptr) {
-                bool esBuida = m_tauler[fila][col]->esBuida();
-                if (!esBuida) {
-                    // Calcula la posició en píxels on dibuixar la fitxa
-                    int x = POS_X_TAULER + CASELLA_INICIAL_X + col * AMPLADA_CASELLA;
-                    int y = POS_Y_TAULER + CASELLA_INICIAL_Y + fila * ALCADA_CASELLA;
-
-                    // Dibuixa la fitxa en pantalla
-                    m_tauler[fila][col]->visualitza(x, y);
-                }
-            }
-        }
-    }
-}
-
-
-ColorFitxa Tauler::getColorFitxa(const Posicio& pos) const {
-    // Inicialment retornem un valor per defecte que indica absència de fitxa
-    ColorFitxa color = CAP_GUANYADOR;
-
-    // Obtenim la fila i la columna de la posició
-    int fila = pos.getFila();
-    int col = pos.getColumna();
-
-    // Comprovem que la posició estigui dins dels límits del tauler
-    bool dinsFiles = fila >= 0 && fila < N_FILES;
-    bool dinsColumnes = col >= 0 && col < N_COLUMNES;
-
-    if (dinsFiles && dinsColumnes) {
-        // Retornem el color real de la fitxa que hi ha a la casella
-        color = m_tauler[fila][col]->getColor();
-    }
-
-    return color;
-}
-
-
-void Tauler::executaMoviment(const Moviment& moviment)
-{
-    if (moviment.getNPosicions() >= 2) {
-        // 1. Copia la fitxa de la posició inicial
-        Posicio origen = moviment.getPosicio(0);
-        Fitxa fitxa = *m_tauler[origen.getFila()][origen.getColumna()];
-
-        // 2. Buida la casella d’origen
-        *m_tauler[origen.getFila()][origen.getColumna()] = Fitxa();
-
-        // 3. Elimina les fitxes capturades
-        eliminaFitxesCapturades(moviment);
-
-        // 4. Mou pas a pas fins al final
-        Posicio desti = moviment.getDesti();
-        *m_tauler[desti.getFila()][desti.getColumna()] = fitxa;
-
-        // 5. Comprova si s'ha de convertir en dama
-        bool esBlancaADama = (fitxa.getColor() == COLOR_BLANC && desti.getFila() == 0);
-        bool esNegraADama = (fitxa.getColor() == COLOR_NEGRE && desti.getFila() == N_FILES - 1);
-        if (esBlancaADama || esNegraADama) {
-            fitxa.convertirEnDama();
-            *m_tauler[desti.getFila()][desti.getColumna()] = fitxa;
-        }
-    }
-}
-
-bool Tauler::teMoviments(ColorFitxa color) const {
-    // Suposem inicialment que no hi ha cap moviment disponible
-    bool hiHaMoviment = false;
-
-    // Recorrem totes les caselles del tauler
-    for (int fila = 0; fila < N_FILES && !hiHaMoviment; ++fila) {
-        for (int col = 0; col < N_COLUMNES && !hiHaMoviment; ++col) {
-
-            // Comprovem que hi ha una fitxa a la casella
-            bool casellaValida = (m_tauler[fila][col] != nullptr);
-            bool noEsBuida = false;
-            if (casellaValida)
-                noEsBuida = !m_tauler[fila][col]->esBuida();
-
-            // Si hi ha una fitxa no buida i del color que estem comprovant
-            if (casellaValida && noEsBuida && m_tauler[fila][col]->getColor() == color) {
-                vector<Posicio> moviments;
-                Posicio pos(fila, col);
-
-                // Obtenim els moviments possibles per a aquesta fitxa
-                getPosicionsPossibles(pos, moviments);
-
-                // Si trobem almenys un moviment, ho marquem i sortirem dels bucles
-                if (!moviments.empty()) {
-                    hiHaMoviment = true;
-                }
-            }
-        }
-    }
-
-    return hiHaMoviment;
-}
-
-bool Tauler::esMovimentCapturaReal(const Moviment& m) const {
-    // Inicialment suposem que no hi ha cap captura
-    bool capturaTrobada = false;
-
-    // Recorrem tots els trams entre posicions consecutives del moviment
-    for (int i = 0; i < m.getNPosicions() - 1 && !capturaTrobada; ++i) {
-        Posicio p1 = m.getPosicio(i);         // Posició d'origen
-        Posicio p2 = m.getPosicio(i + 1);     // Posició de destí
-
-        // Determinem la direcció vertical (dr) i horitzontal (dc)
-        int dr;
-        if (p2.getFila() - p1.getFila() > 0)
-            dr = 1;
-        else
-            dr = -1;
-
-        int dc;
-        if (p2.getColumna() - p1.getColumna() > 0)
-            dc = 1;
-        else
-            dc = -1;
-
-        int f = p1.getFila() + dr;
-        int c = p1.getColumna() + dc;
-
-        // Recorrem les caselles entre p1 i p2
-        while (f != p2.getFila() && c != p2.getColumna() && !capturaTrobada) {
-            if (!m_tauler[f][c]->esBuida()) {
-                // Comprovem si la fitxa trobada és d'un color diferent al de l'origen
-                ColorFitxa colorOrigen = m_tauler[p1.getFila()][p1.getColumna()]->getColor();
-                ColorFitxa colorActual = m_tauler[f][c]->getColor();
-
-                if (colorActual != colorOrigen) {
-                    capturaTrobada = true; // Confirmem que hi ha una captura real
-                }
-            }
-
-            // Avancem cap a la següent casella
-            f += dr;
-            c += dc;
-        }
-    }
-
-    return capturaTrobada;
+    resultat << "   a b c d e f g h\n";
+    return resultat.str();
 }
